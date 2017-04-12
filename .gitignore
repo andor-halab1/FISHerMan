@@ -1,4 +1,4 @@
-# fasta files
+# fasta and database files
 *.fa
 *.fas
 *.nhr
