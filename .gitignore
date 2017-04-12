@@ -1,0 +1,11 @@
+# fasta files
+*.fa
+*.fas
+*.nhr
+*.nin
+*.nsd
+*.nsi
+*.nsq
+*.log
+
+Mouse\
