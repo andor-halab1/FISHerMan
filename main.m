@@ -18,7 +18,7 @@ if ~isempty(seqData1)
     answer = input('take the average of two RNA-seq replicates? (1/0) ');
     if answer == 1
         seqData2 = input('input the directory where the 2nd RNA-seq data file can be found: ');
-        seqData = averageSeqData(seqData1,seqData2);
+        seqData = averageRNASeq(seqData1,seqData2);
     else
         seqData = readRNASeq(seqData1);
     end

@@ -1,4 +1,4 @@
-function seqData = averageSeqData(seqData1,seqData2,varargin)
+function seqData = averageRNASeq(seqData1,seqData2,varargin)
 
 % seqData1 = 'mouse_frontal_cortex_mRNASeq_ENCFF653BKJ.xlsx';
 % seqData2 = 'mouse_frontal_cortex_mRNASeq_ENCFF703SOK.xlsx';
