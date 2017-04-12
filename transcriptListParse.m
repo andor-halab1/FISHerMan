@@ -64,6 +64,11 @@ end
 longHeader = longHeader';
 longSequence = longSequence';
 
+if params.verbose
+    disp(['  ' num2str(length(longHeader)) ' transcripts have length longer than '...
+        num2str(params.length*params.number) ' nt']);
+end
+
 %% Segment each transcript sequence into 1kb pieces, so later analysis runs more efficiently
 if params.verbose
     disp('  segmenting long sequences into 1kb segments');

@@ -1,4 +1,4 @@
-function oligos = runOligoArray(varargin)
+function runOligoArray(varargin)
 
 if length(varargin) >= 1
     params = varargin{1};
@@ -12,6 +12,7 @@ else
         'blastDbPath','C:\OligoArray\BlastDb\','numParallel',10);
 end
 
+%% Set up files for OligoArray; Not decided whether ncrna should be included in the database
 if params.verbose
     disp('setting up OligoArray run');
 end
@@ -25,7 +26,6 @@ if exist([params.blastDbPath params.species '.cdna.fas'], 'file')
     delete([params.blastDbPath params.species '.cdna.fas*']);
 end
 copyfile([params.species '.cdna.fas'], [params.blastDbPath params.species '.cdna.fas']);
-% formatDb([params.blastDbPath params.species '.cdna.fas']);
 blastformat('Inputdb', [params.blastDbPath params.species '.cdna.fas'],...
     'FormatArgs', '-o T -p F');
 
@@ -39,6 +39,7 @@ if exist([params.oligoArrayPath 'OligoArray.log'], 'file')
     delete([params.oligoArrayPath 'OligoArray.log']);
 end
 
+%% Execute OligoArray
 oligoArrayCommand = ['java -Xmx',ceil(num2str(params.GbMem)),'g -jar ' params.oligoArrayExe ...
     ' -i ' params.oligoArrayPath params.species '.target1kb.fas' ...
     ' -d ' params.blastDbPath params.species '.cdna.fas'...
@@ -64,8 +65,5 @@ if params.verbose
     disp('done generating oligos');
 end
 
-oligos = oligosParse([params.oligoArrayPath 'oligos.txt']);
-if params.verbose
-    disp('done parsing OligoArray results');
-end
+copyfile([params.oligoArrayPath 'oligos.txt'], [params.species '.tempoligos.txt']);
 

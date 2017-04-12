@@ -1,4 +1,4 @@
-function oligos = oligosParse(oligos,varargin)
+function oligos = oligosParse(varargin)
 
 % oligos = 'C:\OligoArray\oligos.txt';
 
@@ -6,6 +6,11 @@ if length(varargin) >= 1
     params = varargin{1};
 else
     params = struct('species','Mouse','verbose',1,'length',30,'number',48);
+end
+
+oligos = [params.species '.tempoligos.txt'];
+if ~exist(oligos, 'file')
+    warning('missing important files from OligoArray');
 end
 
 if params.verbose
@@ -129,9 +134,14 @@ if params.verbose
     disp('saving the oligo fasta file');
 end
 
+delete(oligos);
 oligos = [params.species '.oligos.fas'];
 if exist(oligos, 'file')
     delete(oligos);
 end
 fastawrite(oligos,geneNames,specificHits);
+
+if params.verbose
+    disp('done parsing OligoArray results');
+end
 

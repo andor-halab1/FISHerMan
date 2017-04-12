@@ -1,5 +1,5 @@
 function [adapterList,probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore]...
-    =adapterAppend(adapterList,oligos,varargin)
+    =appendAdapters(adapterList,oligos,varargin)
 
 if length(varargin) >= 1
     params = varargin{1};
