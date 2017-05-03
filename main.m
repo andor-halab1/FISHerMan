@@ -37,10 +37,10 @@ adapterList = input('input the directory where the list of adapters can be found
 %  these two types of RNA are depleted in RNA seq.
 if isempty(seqData)
     [cdna,cdnaHeader,cdnaSequence]=cdnaParse(cdna);
-    [ncrna,ncrnaHeader,ncrnaSequence]=ncrnaParse(ncrna,trna);
+    [ncrna,trna,ncrnaHeader,ncrnaSequence]=ncrnaParse(ncrna,trna);
 else
     [cdna,cdnaHeader,cdnaSequence]=cdnaParse(cdna,seqData);
-    [ncrna,ncrnaHeader,ncrnaSequence]=ncrnaParse(ncrna,trna);
+    [ncrna,trna,ncrnaHeader,ncrnaSequence]=ncrnaParse(ncrna,trna);
 end
 
 [abundantrna,abundantrnaHeader,abundantrnaSequence]...
