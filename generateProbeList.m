@@ -35,7 +35,10 @@ indexTotal = logical(indexTotal);
 probeHeader(indexTotal) = [];
 probeSequence(indexTotal) = [];
 
-disp('  saving the list of probes');
+disp('  randomizing and saving the list of probes');
+index = randperm(length(probeHeader))';
+probeHeader = probeHeader(index);
+probeSequence = probeSequence(index);
 probeList = [params.species '.probes.fas'];
 if exist(probeList, 'file')
     delete(probeList);

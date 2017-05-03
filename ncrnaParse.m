@@ -74,7 +74,7 @@ if ~isempty(trna)
     trnaHeader = trnaHeader';
     trnaSequence = trnaSequence';
     for n = 1:length(trnaHeader)
-        Header{end+1,1}=['ENSTRNAT00000000000-ENSTRNAG00000000000-tRNA' num2str(n) '-tRNA'];
+        Header{end+1,1}=['ENSRNAT' num2str(n) '-ENSRNAG' num2str(n) '-tRNA' num2str(n) '-tRNA'];
         Sequence{end+1,1}=trnaSequence{n,1};
     end
     temp = strfind(trna,'\');

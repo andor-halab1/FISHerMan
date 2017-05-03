@@ -94,6 +94,7 @@ end
 
 %% Remove transcripts without enough oligos
 if params.verbose
+    disp(['there are ' num2str(length(unique(geneNames))) ' transcripts']);
     disp('removing transcripts without enough oligos');
 end
 
