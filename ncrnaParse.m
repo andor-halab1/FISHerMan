@@ -78,7 +78,9 @@ if ~isempty(trna)
         Sequence{end+1,1}=trnaSequence{n,1};
     end
     temp = strfind(trna,'\');
-    trna = trna(temp(end)+1:end);
+    if ~isempty(temp)
+        trna = trna(temp(end)+1:end);
+    end
 end
 
 if params(1).verbose
