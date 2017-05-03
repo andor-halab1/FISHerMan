@@ -13,6 +13,7 @@ addpath([FISHerManPath 'utilities']);
 
 cdna = input('input the directory where the cdna file can be found: ');
 ncrna = input('input the directory where the ncrna file can be found: ');
+trna = input('input the directory where a separate trna file can be found: ');
 seqData1 = input('input the directory where the RNA-seq data file can be found: ');
 if ~isempty(seqData1)
     answer = input('take the average of two RNA-seq replicates? (1/0) ');
@@ -36,10 +37,10 @@ adapterList = input('input the directory where the list of adapters can be found
 %  these two types of RNA are depleted in RNA seq.
 if isempty(seqData)
     [cdna,cdnaHeader,cdnaSequence]=cdnaParse(cdna);
-    [ncrna,ncrnaHeader,ncrnaSequence]=ncrnaParse(ncrna);
+    [ncrna,ncrnaHeader,ncrnaSequence]=ncrnaParse(ncrna,trna);
 else
     [cdna,cdnaHeader,cdnaSequence]=cdnaParse(cdna,seqData);
-    [ncrna,ncrnaHeader,ncrnaSequence]=ncrnaParse(ncrna);
+    [ncrna,ncrnaHeader,ncrnaSequence]=ncrnaParse(ncrna,trna);
 end
 
 [abundantrna,abundantrnaHeader,abundantrnaSequence]...

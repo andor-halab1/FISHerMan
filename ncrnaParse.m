@@ -1,4 +1,4 @@
-function [ncrna,Header,Sequence]=ncrnaParse(ncrna,varargin)
+function [ncrna,Header,Sequence]=ncrnaParse(ncrna,trna,varargin)
 
 % ncrna = 'C:\OligoArray\Mouse38.ncrna.fa';
 
@@ -64,6 +64,19 @@ if ~isempty(seqData)
         disp('  picking expressed sequences according to RNA-seq data');
     end
     [Header, Sequence] = pickExpressedSeq(seqData, Header, Sequence);
+end
+
+if ~isempty(trna)
+    if params(1).verbose
+        disp('  appending additional tRNA sequences to ncrna data file');
+    end
+    [trnaHeader, trnaSequence] = fastaread(trna);
+    trnaHeader = trnaHeader';
+    trnaSequence = trnaSequence';
+    for n = 1:length(trnaHeader)
+        Header{end+1,1}=['ENSMUST00000000000-ENSMUSG00000000000-tRNA' num2str(n) '-tRNA'];
+        Sequence{end+1,1}=trnaSequence{n,1};
+    end
 end
 
 if params(1).verbose
