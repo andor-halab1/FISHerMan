@@ -6,11 +6,11 @@ switch length(varargin)
     case 0
         seqData = [];
         params = struct('species','Mouse','verbose',1,...
-            'keys',{'ENS\w*T\d*','ENS\w*G\d*','gene_symbol:\S*','gene_biotype:\S*'});
+            'keys',{'ENS\w*T\d*','ENS\w*G\d*','gene_biotype:\S*'});
     case 1
         seqData = varargin{1};
         params = struct('species','Mouse','verbose',1,...
-            'keys',{'ENS\w*T\d*','ENS\w*G\d*','gene_symbol:\S*','gene_biotype:\S*'});
+            'keys',{'ENS\w*T\d*','ENS\w*G\d*','gene_biotype:\S*'});
     otherwise
         seqData = varargin{1};
         params = varargin{2};
@@ -36,8 +36,7 @@ for n = 1:length(Header)
     temp = Header{n,1};
     temp1 = temp(pos1{1,1}{n,1}:pos2{1,1}{n,1});
     temp2 = temp(pos1{2,1}{n,1}:pos2{2,1}{n,1});
-    temp3 = temp(pos1{3,1}{n,1}+12:pos2{3,1}{n,1});
-    temp4 = temp(pos1{4,1}{n,1}+13:pos2{4,1}{n,1});
+    temp3 = temp(pos1{3,1}{n,1}+13:pos2{3,1}{n,1});
     
     if isempty(temp1)
         disp('missing transcript ID');
@@ -46,17 +45,10 @@ for n = 1:length(Header)
         disp('missing gene ID');
     end
     if isempty(temp3)
-        disp('missing gene name');
-    end
-    if isempty(temp4)
         disp('missing gene type');
     end
     
-    if isempty(strfind(temp,'pseudogene'))
-        Header{n,1} = strcat(temp1, '-', temp2, '-', temp3, '-', temp4);
-    else
-        Header{n,1} = strcat(temp1, '-', temp2, '-', temp3, '-', temp4, '=pseudogene');
-    end
+    Header{n,1} = strcat(temp1, ':', temp2, ':', temp3);
 end
 
 if ~isempty(seqData)
@@ -74,7 +66,7 @@ if ~isempty(trna)
     trnaHeader = trnaHeader';
     trnaSequence = trnaSequence';
     for n = 1:length(trnaHeader)
-        Header{end+1,1}=['ENSRNAT' num2str(n) '-ENSRNAG' num2str(n) '-tRNA' num2str(n) '-tRNA'];
+        Header{end+1,1}=['ENSRNAT' num2str(n) ':ENSRNAG' num2str(n) ':tRNA'];
         Sequence{end+1,1}=trnaSequence{n,1};
     end
     temp = strfind(trna,'\');

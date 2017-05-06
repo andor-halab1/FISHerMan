@@ -6,12 +6,12 @@ switch length(varargin)
         seqData = [];
         params = struct('species','Mouse','verbose',1,...
             'percent',0.001,...
-            'keys',{'ENS\w*T\d*','-rRNA','-Mt_rRNA','-tRNA','-Mt_tRNA'});
+            'keys',{'ENS\w*T\d*',':rRNA',':Mt_rRNA',':tRNA',':Mt_tRNA'});
     case 1
         seqData = varargin{1};
         params = struct('species','Mouse','verbose',1,...
             'percent',0.001,...
-            'keys',{'ENS\w*T\d*','-rRNA','-Mt_rRNA','-tRNA','-Mt_tRNA'});
+            'keys',{'ENS\w*T\d*',':rRNA',':Mt_rRNA',':tRNA',':Mt_tRNA'});
     otherwise
         seqData = varargin{1};
         params = varargin{2};
