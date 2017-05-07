@@ -109,7 +109,9 @@ uniqueNames = unique(trimNames, 'stable');
 indexTotal = zeros(length(trimNames),1);
 for n = 1:length(uniqueNames)
     index = ismember(trimNames, uniqueNames{n,1});
-    if sum(index) < params.number && isempty(strfind(uniqueNames{n,1},'ENSSPT')) % for Bin's special sequences
+    if sum(index) < params.number && isempty(strfind(uniqueNames{n,1},'ENSSPT')) ...
+            && isempty(strfind(uniqueNames{n,1},'ENSMUST00000100497')) ...
+            && isempty(strfind(uniqueNames{n,1},'ENSMUST00000118875')) % for Bin's special sequences
         indexTotal = indexTotal+index;
         if params.verbose
             disp(['  transcript ' uniqueNames{n,1} ...

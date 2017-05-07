@@ -22,7 +22,9 @@ uniqueHeader = unique(trimHeader, 'stable');
 indexTotal = zeros(length(trimHeader),1);
 for n = 1:length(uniqueHeader)
     index = ismember(trimHeader, uniqueHeader{n,1});
-    if sum(index) < params.number && isempty(strfind(uniqueHeader{n,1},'ENSSPT')) % for Bin's special sequences
+    if sum(index) < params.number && isempty(strfind(uniqueHeader{n,1},'ENSSPT')) ...
+            && isempty(strfind(uniqueNames{n,1},'ENSMUST00000100497')) ...
+            && isempty(strfind(uniqueNames{n,1},'ENSMUST00000118875')) % for Bin's special sequences
         indexTotal = indexTotal+index;
         if params.verbose
             disp(['  transcript ' uniqueHeader{n,1} ...
