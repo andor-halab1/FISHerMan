@@ -109,7 +109,7 @@ uniqueNames = unique(trimNames, 'stable');
 indexTotal = zeros(length(trimNames),1);
 for n = 1:length(uniqueNames)
     index = ismember(trimNames, uniqueNames{n,1});
-    if sum(index) < params.number && notSpecialTranscript(uniqueNames{n,1}) % for Bin's special sequences
+    if sum(index) < params.number && checkSpecialTranscripts(uniqueNames{n,1}) % for Bin's special sequences
         indexTotal = indexTotal+index;
         if params.verbose
             disp(['  transcript ' uniqueNames{n,1} ...
