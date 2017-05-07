@@ -1,4 +1,4 @@
-function probeList=generateProbeList(probeHeader,probeSequence,varargin)
+function probeList=generateProbeList(adapterList,probeHeader,probeSequence,varargin)
 
 if length(varargin) >= 1
     params = varargin{1};
@@ -44,3 +44,10 @@ if exist(probeList, 'file')
     delete(probeList);
 end
 fastawrite(probeList,probeHeader,probeSequence);
+
+%% Check how many transcripts are left after this step of screening
+[geneNumLeft,geneNumDelete]=checkTranscriptsLeft(adapterList,probeHeader);
+if params.verbose
+    disp([num2str(geneNumDelete) ' out of ' num2str(geneNumLeft+geneNumDelete)...
+        ' FISH escaped FISHerMan''s net']);
+end

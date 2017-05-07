@@ -77,7 +77,13 @@ end
 %% Find out the oligos that non-specifically hit abundant rna database
 seqDelete = [];
 for n = 1:length(data)
-    if ~isempty(data(n).Hits)
+    flag = 0;
+    for m = 1:length(data(n).Hits)
+        if ~strfind(data(n).Query,data(n).Hits(m).Name)
+            flag = 1;
+        end
+    end
+    if flag == 1
         seqDelete = [seqDelete n];
     end
 end

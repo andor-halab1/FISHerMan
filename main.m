@@ -70,7 +70,7 @@ oligoList=oligosParse;
     =blastAbundantRNA(adapterList,probeHeader,probeSequence3Seg,probeSequence,probeSequenceCore);
 
 %% Generate the list of probes
-probeList=generateProbeList(probeHeader,probeSequence);
+probeList=generateProbeList(adapterList,probeHeader,probeSequence);
 
 disp('done designing FISH probes');
 disp('FISHerMan is at rest');
