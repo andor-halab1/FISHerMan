@@ -6,7 +6,7 @@ function [transcriptList,longHeader,longSequence]=transcriptListParse(transcript
 if length(varargin) >= 1
     params = varargin{1};
 else
-    params = struct('species','Mouse','verbose',1,'length',30,'number',48);
+    params = struct('species','Mouse','verbose',1,'length',40,'number',24);
 end
 
 % if params.verbose
