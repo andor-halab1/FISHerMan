@@ -50,12 +50,10 @@ else % use all possible transcripts in the cdna file as targets for designing FI
         disp('  thresholding based on sequence length');
     end
     
-    pos =  regexp(cdnaHeader, 'pseudogene');
-    
     longHeader = {};
     longSequence = {};
     for n = 1:length(cdnaHeader)
-        if length(cdnaSequence{n,1}) >= (params.length*params.number) && isempty(pos{n,1})
+        if length(cdnaSequence{n,1}) >= (params.length*params.number)
             longHeader{end+1} = cdnaHeader{n,1};
             longSequence{end+1} = cdnaSequence{n,1};
         end
