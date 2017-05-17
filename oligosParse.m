@@ -5,7 +5,8 @@ function oligos = oligosParse(varargin)
 if length(varargin) >= 1
     params = varargin{1};
 else
-    params = struct('species','Mouse','verbose',1,'length',30,'number',48);
+    params = struct('species','Mouse','verbose',1,...
+        'keys',{'ENS\w*T\d*','ENS\w*G\d*'},'number',48);
 end
 
 oligos = [params.species '.tempoligos.txt'];
@@ -35,7 +36,7 @@ for n = 1:length(geneNames)
     if params.verbose && mod(n, 1000) == 1
         disp(['  analyzing oligo entry no. ' num2str(n)]);
     end
-    [pos1, pos2] = regexp(nonspecificHits{n,1}, 'ENS\w*G\d*', 'start', 'end');
+    [pos1, pos2] = regexp(nonspecificHits{n,1}, params(2).keys, 'start', 'end');
     
     flag = 0;
     for m = 1:length(pos1)
@@ -67,7 +68,7 @@ end
 %     disp('removing transcripts without enough oligos');
 % end
 
-% pos = regexp(geneNames, 'ENS\w*T\d*', 'end');
+% pos = regexp(geneNames, params(1).keys, 'end');
 % trimNames = {};
 % for n = 1:length(geneNames)
 %     trimNames{end+1} = geneNames{n,1}(1:pos{n,1});
@@ -98,7 +99,7 @@ if params.verbose
     disp('removing transcripts without enough oligos');
 end
 
-pos = regexp(geneNames, 'ENS\w*T\d*', 'end');
+pos = regexp(geneNames, params(1).keys, 'end');
 trimNames = {};
 for n = 1:length(geneNames)
     trimNames{end+1} = geneNames{n,1}(1:pos{n,1});

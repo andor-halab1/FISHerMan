@@ -1,0 +1,82 @@
+<parameters>
+  <!-- general parameters -->
+  <general>
+    <verbose>1</verbose>
+  </general>
+  
+  <!-- rnaSeq parameters -->
+  <!-- averageRNAseq.m and readRNASeq.m -->
+  <rnaSeq>
+    <key1>ENS\w*T\d*</key1>
+	<key2>ENS\w*G\d*</key2>
+    <thres>0.1</thres>
+  </rnaSeq>
+  
+  <!-- cdna parameters -->
+  <!-- cdnaParse.m -->
+  <cdna>
+    <key1>ENS\w*T\d*</key1>
+	<key2>ENS\w*G\d*</key2>
+  </cdna>
+  
+  <!-- ncrna parameters -->
+  <!-- ncrnaParse.m -->
+  <ncrna>
+    <key1>ENS\w*T\d*</key1>
+	<key2>ENS\w*G\d*</key2>
+    <key3>gene_biotype:\S*</key3>
+  </ncrna>
+  
+  <!-- abundantrna parameters -->
+  <!-- abundantrnaParse.m -->
+  <abundantrna>
+    <key1>ENS\w*T\d*</key1>
+    <key2>:rRNA</key2>
+	<key3>:Mt_rRNA</key3>
+	<key4>:tRNA</key4>
+	<key5>:Mt_tRNA</key5>
+  </abundantrna>
+  
+  <!-- transcriptList parameters -->
+  <!-- transcriptListParse.m -->
+  <transcriptList>
+    <length>40</length>
+	<number>24</number>
+  </transcriptList>
+  
+  <!-- OligoArray parameters -->
+  <!-- runOligoArray.m -->
+  <OligoArray>
+    <GbMem>16</GbMem>
+	<maxFragment>1000</maxFragment>
+	<crosshybeT>72</crosshybeT>
+	<crosshybeT>72.0</crosshybeT>
+	<minTm>70</minTm>
+	<maxTm>90</maxTm>
+	<minPercentGC>40.0</minPercentGC>
+	<maxPercentGC>65.0</maxPercentGC>
+	<probeLength>30</probeLength>
+	<probeLengthMax>30</probeLengthMax>
+	<minProbeDist>40</minProbeDist>
+	<maskedSeq>"GGGGGG;CCCCCC;TTTTTT;AAAAAA"</maskedSeq>
+	<oligoArrayPath>C:\OligoArray\</oligoArrayPath>
+	<oligoArrayExe>C:\OligoArray\OligoArray2.jar</oligoArrayExe>
+    <blastDbPath>C:\OligoArray\BlastDb\</blastDbPath>
+	<numParallel>10</numParallel>
+  </OligoArray>
+  
+  <!-- oligos parameters -->
+  <!-- oligosParse.m -->
+  <oligos>
+    <key1>ENS\w*T\d*</key1>
+	<key2>ENS\w*G\d*</key2>
+	<number>48</number>
+	<thres>30</thres>
+	<querySize>30</querySize>
+	<DbSize>200000</DbSize>
+	<seqNum>1000</seqNum>
+    <blastArgs>-S 2</blastArgs>
+	<parallel>0</parallel>
+  </oligos>
+  
+</parameters>

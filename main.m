@@ -11,6 +11,8 @@ cd([FISHerManPath species]);
 addpath(FISHerManPath);
 addpath([FISHerManPath 'utilities']);
 
+parameters = input('input the directory where the parameter file can be found: ');
+params=readParameters(species,parameters);
 cdna = input('input the directory where the cdna file can be found: ');
 ncrna = input('input the directory where the ncrna file can be found: ');
 trna = input('input the directory where a separate trna file can be found: ');
@@ -19,9 +21,9 @@ if ~isempty(seqData1)
     answer = input('take the average of two RNA-seq replicates? (1/0) ');
     if answer == 1
         seqData2 = input('input the directory where the 2nd RNA-seq data file can be found: ');
-        seqData = averageRNASeq(seqData1,seqData2);
+        seqData = averageRNASeq(seqData1,seqData2,params.rnaSeq);
     else
-        seqData = readRNASeq(seqData1);
+        seqData = readRNASeq(seqData1,params.rnaSeq);
     end
 else
     seqData = seqData1;
@@ -36,22 +38,22 @@ adapterList = input('input the directory where the list of adapters can be found
 %  database are expressed. But be sure to include rRNA and tRNA, for often
 %  these two types of RNA are depleted in RNA seq.
 if isempty(seqData)
-    [cdna,cdnaHeader,cdnaSequence]=cdnaParse(cdna);
-    [ncrna,trna,ncrnaHeader,ncrnaSequence]=ncrnaParse(ncrna,trna);
+    [cdna,cdnaHeader,cdnaSequence]=cdnaParse(cdna,params.cdna);
+    [ncrna,trna,ncrnaHeader,ncrnaSequence]=ncrnaParse(ncrna,trna,params.ncrna);
 else
-    [cdna,cdnaHeader,cdnaSequence]=cdnaParse(cdna,seqData);
-    [ncrna,trna,ncrnaHeader,ncrnaSequence]=ncrnaParse(ncrna,trna);
+    [cdna,cdnaHeader,cdnaSequence]=cdnaParse(cdna,seqData,params.cdna);
+    [ncrna,trna,ncrnaHeader,ncrnaSequence]=ncrnaParse(ncrna,trna,params.ncrna);
 end
 
 [abundantrna,abundantrnaHeader,abundantrnaSequence]...
-    =abundantrnaParse(cdnaHeader,cdnaSequence,ncrnaHeader,ncrnaSequence,seqData);
+    =abundantrnaParse(cdnaHeader,cdnaSequence,ncrnaHeader,ncrnaSequence,seqData,params.abundantrna);
 
 [transcriptList,transcriptHeader,transcriptSequence]...
-    =transcriptListParse(transcriptList,cdnaHeader,cdnaSequence,ncrnaHeader,ncrnaSequence);
+    =transcriptListParse(transcriptList,cdnaHeader,cdnaSequence,ncrnaHeader,ncrnaSequence,params.transcriptList);
 
 %% Run OligoArray to generate a raw list of oligos
 runOligoArray;
-oligoList=oligosParse;
+oligoList=oligosParse(params.oligos);
 
 %% Append pre-designed adapters to the raw list of oligos
 [adapterList,probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore]...
