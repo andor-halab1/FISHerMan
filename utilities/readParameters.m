@@ -9,58 +9,23 @@ params = struct('rnaSeq','','cdna','','ncrna','',...
 
 tree = xmlread(parameters);
 
-try
-    parameters = tree.getElementsByTagName('parameters');
-    parameters = parameters.item(0);
-    
-    general = parameters.getElementsByTagName('general');
-    general = general.item(0);
-    
-    rnaSeq = parameters.getElementsByTagName('rnaSeq');
-    rnaSeq = rnaSeq.item(0);
-    
-    cdna = parameters.getElementsByTagName('cdna');
-    cdna = cdna.item(0);
-    
-    ncrna = parameters.getElementsByTagName('ncrna');
-    ncrna = ncrna.item(0);
-    
-    abundantrna = parameters.getElementsByTagName('abundantrna');
-    abundantrna = abundantrna.item(0);
-    
-    transcriptList = parameters.getElementsByTagName('transcriptList');
-    transcriptList = transcriptList.item(0);
-    
-    OligoArray = parameters.getElementsByTagName('OligoArray');
-    OligoArray = OligoArray.item(0);
-    
-    oligos = parameters.getElementsByTagName('oligos');
-    oligos = oligos.item(0);
-catch
-    disp('error occurred at level 1');
-end
+parameters=xmlParse(tree, 'tree', 'parameters');
+general=xmlParse(parameters, 'parameters', 'general');
+rnaSeq=xmlParse(parameters, 'parameters', 'rnaSeq');
+cdna=xmlParse(parameters, 'parameters', 'cdna');
+ncrna=xmlParse(parameters, 'parameters', 'ncrna');
+abundantrna=xmlParse(parameters, 'parameters', 'abundantrna');
+transcriptList=xmlParse(parameters, 'parameters', 'transcriptList');
+OligoArray=xmlParse(parameters, 'parameters', 'OligoArray');
+oligos=xmlParse(parameters, 'parameters', 'oligos');
 
 %%
-try
-    verbose = general.getElementsByTagName('verbose');
-    verbose = verbose.item(0);
-catch
-    disp('error occurred at general');
-end
+verbose=xmlParse(general, 'general', 'verbose');
 
 %%
-try
-    key1 = rnaSeq.getElementsByTagName('key1');
-    key1 = key1.item(0);
-    
-    key2 = rnaSeq.getElementsByTagName('key2');
-    key2 = key2.item(0);
-    
-    thres = rnaSeq.getElementsByTagName('thres');
-    thres = thres.item(0);
-catch
-    disp('error occurred at rnaSeq');
-end
+key1=xmlParse(rnaSeq, 'rnaSeq', 'key1');
+key2=xmlParse(rnaSeq, 'rnaSeq', 'key2');
+thres=xmlParse(rnaSeq, 'rnaSeq', 'thres');
 
 params.rnaSeq = struct('species',species,...
     'verbose',str2double(verbose.getFirstChild.getData),...
@@ -68,33 +33,17 @@ params.rnaSeq = struct('species',species,...
     'thres',str2double(thres.getFirstChild.getData));
 
 %%
-try
-    key1 = cdna.getElementsByTagName('key1');
-    key1 = key1.item(0);
-    
-    key2 = cdna.getElementsByTagName('key2');
-    key2 = key2.item(0);
-catch
-    disp('error occurred at cdna');
-end
+key1=xmlParse(cdna, 'cdna', 'key1');
+key2=xmlParse(cdna, 'cdna', 'key2');
 
 params.cdna = struct('species',species,...
     'verbose',str2double(verbose.getFirstChild.getData),...
     'keys',{char(key1.getFirstChild.getData),char(key2.getFirstChild.getData)});
 
 %%
-try
-    key1 = ncrna.getElementsByTagName('key1');
-    key1 = key1.item(0);
-    
-    key2 = ncrna.getElementsByTagName('key2');
-    key2 = key2.item(0);
-    
-    key3 = ncrna.getElementsByTagName('key3');
-    key3 = key3.item(0);
-catch
-    disp('error occurred at ncrna');
-end
+key1=xmlParse(ncrna, 'ncrna', 'key1');
+key2=xmlParse(ncrna, 'ncrna', 'key2');
+key3=xmlParse(ncrna, 'ncrna', 'key3');
 
 params.ncrna = struct('species',species,...
     'verbose',str2double(verbose.getFirstChild.getData),...
@@ -102,24 +51,11 @@ params.ncrna = struct('species',species,...
     char(key2.getFirstChild.getData),char(key3.getFirstChild.getData)});
 
 %%
-try
-    key1 = abundantrna.getElementsByTagName('key1');
-    key1 = key1.item(0);
-    
-    key2 = abundantrna.getElementsByTagName('key2');
-    key2 = key2.item(0);
-    
-    key3 = abundantrna.getElementsByTagName('key3');
-    key3 = key3.item(0);
-    
-    key4 = abundantrna.getElementsByTagName('key4');
-    key4 = key4.item(0);
-    
-    key5 = abundantrna.getElementsByTagName('key5');
-    key5 = key5.item(0);
-catch
-    disp('error occurred at abundantrna');
-end
+key1=xmlParse(abundantrna, 'abundantrna', 'key1');
+key2=xmlParse(abundantrna, 'abundantrna', 'key2');
+key3=xmlParse(abundantrna, 'abundantrna', 'key3');
+key4=xmlParse(abundantrna, 'abundantrna', 'key4');
+key5=xmlParse(abundantrna, 'abundantrna', 'key5');
 
 params.abundantrna = struct('species',species,...
     'verbose',str2double(verbose.getFirstChild.getData),...
@@ -128,15 +64,8 @@ params.abundantrna = struct('species',species,...
     char(key4.getFirstChild.getData),char(key5.getFirstChild.getData)});
 
 %%
-try
-    len = transcriptList.getElementsByTagName('length');
-    len = len.item(0);
-    
-    num = transcriptList.getElementsByTagName('number');
-    num = num.item(0);
-catch
-    disp('error occurred at transcriptList');
-end
+len=xmlParse(transcriptList, 'transcriptList', 'length');
+num=xmlParse(transcriptList, 'transcriptList', 'number');
 
 params.transcriptList = struct('species',species,...
     'verbose',str2double(verbose.getFirstChild.getData),...
@@ -146,36 +75,15 @@ params.transcriptList = struct('species',species,...
 %%
 
 %%
-try
-    key1 = oligos.getElementsByTagName('key1');
-    key1 = key1.item(0);
-    
-    key2 = oligos.getElementsByTagName('key2');
-    key2 = key2.item(0);
-    
-    num = oligos.getElementsByTagName('number');
-    num = num.item(0);
-    
-    thres = oligos.getElementsByTagName('thres');
-    thres = thres.item(0);
-    
-    querySize = oligos.getElementsByTagName('querySize');
-    querySize = querySize.item(0);
-    
-    DbSize = oligos.getElementsByTagName('DbSize');
-    DbSize = DbSize.item(0);
-    
-    seqNum = oligos.getElementsByTagName('seqNum');
-    seqNum = seqNum.item(0);
-    
-    blastArgs = oligos.getElementsByTagName('blastArgs');
-    blastArgs = blastArgs.item(0);
-    
-    parallel = oligos.getElementsByTagName('parallel');
-    parallel = parallel.item(0);
-catch
-    disp('error occurred at oligos');
-end
+key1=xmlParse(oligos, 'oligos', 'key1');
+key2=xmlParse(oligos, 'oligos', 'key2');
+num=xmlParse(oligos, 'oligos', 'number');
+thres=xmlParse(oligos, 'oligos', 'thres');
+querySize=xmlParse(oligos, 'oligos', 'querySize');
+DbSize=xmlParse(oligos, 'oligos', 'DbSize');
+seqNum=xmlParse(oligos, 'oligos', 'seqNum');
+blastArgs=xmlParse(oligos, 'oligos', 'blastArgs');
+parallel=xmlParse(oligos, 'oligos', 'parallel');
 
 params.oligos = struct('species',species,...
     'verbose',str2double(verbose.getFirstChild.getData),...

@@ -6,11 +6,12 @@ function seqData = averageRNASeq(seqData1,seqData2,varargin)
 if length(varargin) >= 1
     params = varargin{1};
 else
-    params = struct('species','Mouse','verbose',1,'thres',0.1);
+    params = struct('species','Mouse','verbose',1,...
+        'keys',{'ENS\w*T\d*','ENS\w*G\d*'},'thres',0.1);
 end
 
-seqData1 = readRNASeq(seqData1);
-seqData2 = readRNASeq(seqData2);
+seqData1 = readRNASeq(seqData1,params);
+seqData2 = readRNASeq(seqData2,params);
 
 transcriptID1 = seqData1(:,1);
 transcriptID2 = seqData2(:,1);
@@ -26,5 +27,5 @@ for n = 1:length(seqData)
 end
 
 FPKM = cell2mat(seqData(:,3));
-index = FPKM>=params.thres;
+index = FPKM>=params(1).thres;
 seqData = seqData(index,:);
