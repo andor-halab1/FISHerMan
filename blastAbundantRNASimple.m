@@ -17,28 +17,28 @@ if isempty(nonSequence)
     nonSequence = Sequence;
 end
 
-if params.verbose
+if params(1).verbose
     disp('removing non-specific oligos against the abundant rna database');
 end
 
 %% Split one giant fasta file into smaller ones, so that parallel computing is possible
-if params.verbose
+if params(1).verbose
     disp('  spliting fasta files for parallel computing');
 end
 
-filePathList = blastFileSplit(Header, Sequence, params.seqNum);
+filePathList = blastFileSplit(Header, Sequence, params(1).seqNum);
 fileNum = length(filePathList);
 
 %% Blast mouse oligos against abundant rna
-eValue = bitScore2eValue(params.thres, params.querySize, params.DbSize);
+eValue = bitScore2eValue(params(1).thres, params(1).querySize, params(1).DbSize);
 
-DbPath = [params.species '.abundantrnaDb.fas'];
-blastArgs = [params.blastArgs ' -e ' num2str(eValue)];
+DbPath = [params(1).species '.abundantrnaDb.fas'];
+blastArgs = [params(1).blastArgs ' -e ' num2str(eValue)];
 
 blastData = {};
-if params.parallel
+if params(1).parallel
     poolobj = parpool;
-    verbose = params.verbose;
+    verbose = params(1).verbose;
     parfor k = 1:fileNum
         if verbose
             disp(['  blasting temporary file no. ' num2str(k)]);
@@ -53,12 +53,12 @@ if params.parallel
     delete(poolobj);
 else
     for k = 1:fileNum
-        if params.verbose
+        if params(1).verbose
             disp(['  blasting temporary file no. ' num2str(k)]);
             startTime = tic;
         end
         blastData{k,1} = blastOp(filePathList{k}, DbPath, blastArgs);
-        if params.verbose
+        if params(1).verbose
             totalTime = toc(startTime);
             disp(['  elapsed time is ' num2str(totalTime) ' seconds']);
         end

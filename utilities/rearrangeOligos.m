@@ -15,7 +15,7 @@ rearrangedHeader = {};
 rearrangedSequence = {};
 rearrangednonSequence = {};
 for n = 1:length(uniqueHeader)
-    if params.verbose && mod(n, 1000) == 1
+    if params(1).verbose && mod(n, 1000) == 1
         disp(['  rearranging transcript no. ' num2str(n)]);
     end
     index = ismember(Header, uniqueHeader{n,1});

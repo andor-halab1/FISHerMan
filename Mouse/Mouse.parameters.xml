@@ -78,6 +78,9 @@
 	<seqNum>1000</seqNum>
     <blastArgs>-S 2</blastArgs>
 	<parallel>0</parallel>
+	<ST1>ENSSPT</ST1>
+	<ST2>ENSMUST00000100497</ST2>
+	<ST3>ENSMUST00000118875</ST3>
   </oligos>
   
 </parameters>
