@@ -30,6 +30,7 @@
   <!-- abundantrna parameters -->
   <!-- abundantrnaParse.m -->
   <abundantrna>
+    <percent>0.001</percent>
     <key1>ENS\w*T\d*</key1>
     <key2>:rRNA</key2>
 	<key3>:Mt_rRNA</key3>

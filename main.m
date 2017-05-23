@@ -37,13 +37,8 @@ adapterList = input('input the directory where the list of adapters can be found
 %  RNA seq data, and it will tell me which transcripts in the ncrna
 %  database are expressed. But be sure to include rRNA and tRNA, for often
 %  these two types of RNA are depleted in RNA seq.
-if isempty(seqData)
-    [cdna,cdnaHeader,cdnaSequence]=cdnaParse(cdna,params.cdna);
-    [ncrna,trna,ncrnaHeader,ncrnaSequence]=ncrnaParse(ncrna,trna,params.ncrna);
-else
-    [cdna,cdnaHeader,cdnaSequence]=cdnaParse(cdna,seqData,params.cdna);
-    [ncrna,trna,ncrnaHeader,ncrnaSequence]=ncrnaParse(ncrna,trna,params.ncrna);
-end
+[cdna,cdnaHeader,cdnaSequence]=cdnaParse(cdna,seqData,params.cdna);
+[ncrna,trna,ncrnaHeader,ncrnaSequence]=ncrnaParse(ncrna,trna,[],params.ncrna);
 
 [abundantrna,abundantrnaHeader,abundantrnaSequence]...
     =abundantrnaParse(cdnaHeader,cdnaSequence,ncrnaHeader,ncrnaSequence,seqData,params.abundantrna);
