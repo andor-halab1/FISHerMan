@@ -1,0 +1,35 @@
+1) mouse general forward primer:
+5'-GGAATCGTTGCGGGTGTCCT-3'
+
+2) mouse general reverse primer:
+5'-CACGATGCTGGATGTTGCGG-3'
+
+3) mouse general reverse primer-T7:
+5'-TAATACGACTCACTATAGGGCACGATGCTGGATGTTGCGG-3'
+
+4) readout_m3r:
+5'-AGAGTGAGTAGTAGTGGAGT-3'
+
+5) readout_m4r:
+5'-TGTGATGGAAGTTAGAGGGT-3'
+
+6) gene-specific forward primer (for GRIA1):
+5'-GAGTGGCAATGCGCGATAAC-3'
+
+7) gene-specific forward primer (for CAMK2A):
+5'-GACAGCCGTAACCAATTAGC-3'
+
+8) gene-specific forward primer (for GAPDH):
+5'-ACAATACACTGGTCACGGTT-3'
+
+9) readout_m4r-gsf primer (for GRIA1):
+5'-TGTGATGGAAGTTAGAGGGTGAGTGGCAATGCGCGATAAC-3'
+
+10) readout_m3r-gsf primer (for CAMK2A):
+5'-AGAGTGAGTAGTAGTGGAGTGACAGCCGTAACCAATTAGC-3'
+
+11) readout_m4r-gsf primer (for GAPDH):
+5'-TGTGATGGAAGTTAGAGGGTACAATACACTGGTCACGGTT-3'
+
+
+
