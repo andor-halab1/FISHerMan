@@ -35,12 +35,11 @@ end
 %  RNA seq data, and it will tell me which transcripts in the ncrna
 %  database are expressed. But be sure to include rRNA and tRNA, for often
 %  these two types of RNA are depleted in RNA seq.
+[cdnaHeader,cdnaSequence]=cdnaParse(params.cdna(1).dir1,seqData,params.cdna);
 if params.rnaSeq(1).mRNA
-    [cdnaHeader,cdnaSequence]=cdnaParse(params.cdna(1).dir1,seqData,params.cdna);
     [ncrnaHeader,ncrnaSequence]...
         =ncrnaParse(params.ncrna(1).dir1,[],params.ncrna(1).dirT,params.ncrna);
 else
-    [cdnaHeader,cdnaSequence]=cdnaParse(params.cdna(1).dir1,seqData,params.cdna);
     [ncrnaHeader,ncrnaSequence]...
         =ncrnaParse(params.ncrna(1).dir1,seqData,params.ncrna(1).dirT,params.ncrna);
 end
@@ -57,14 +56,12 @@ runOligoArray;
 oligoList=oligosParse(params.oligos);
 
 %% Append pre-designed adapters to the raw list of oligos
-adapterList = input('input the directory where the list of adapters can be found: ');
-
 [adapterList,probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore]...
-    =appendAdapters(adapterList,oligoList);
+    =appendAdapters(params.adapters(1).dir1,oligoList,params.adapters);
 
 %% Remove probes that non-specifically bind to primers in the 1st PCR step
 [probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore]...
-    =blast1stPCR(adapterList,probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore);
+    =blast1stPCR(adapterList,probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore,params.onePCR);
 
 %% Save the probes of each transcripts into individual files
 [probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore]...

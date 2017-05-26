@@ -20,7 +20,7 @@ uniqueHeader = unique(simpleHeader,'stable');
 geneNumLeft = length(uniqueHeader);
 geneNumDelete = geneNumTotal-geneNumLeft;
 
-[adapterHeader,adapterSequence] = pickExpressedSeq(uniqueHeader,adapterHeader,adapterSequence);
+[adapterHeader,adapterSequence] = pickExpressedSeq(uniqueHeader,adapterHeader,adapterSequence,params);
 if exist(adapterList, 'file')
     delete(adapterList);
 end

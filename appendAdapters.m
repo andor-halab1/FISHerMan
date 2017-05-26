@@ -1,17 +1,17 @@
 function [adapterList,probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore]...
-    =appendAdapters(adapterList,oligos,varargin)
+    =appendAdapters(adapterList,oligos,params)
 
-if length(varargin) >= 1
-    params = varargin{1};
-else
-    params = struct('species','Mouse','verbose',1,'keys','ENS\w*T\d*',...
-        'gf','GGAATCGTTGCGGGTGTCCT','grr','CCGCAACATCCAGCATCGTG',...
-        'T7r','CCCTATAGTGAGTCGTATTA',...
-        'rRr','AGAGTGAGTAGTAGTGGAGT','rGr','GATGATGTAGTAGTAAGGGT',...
-        'rBr','TGTGATGGAAGTTAGAGGGT','rIRr','GGAGTAGTTGGTTGTTAGGA');
-end
+% if length(varargin) >= 1
+%     params = varargin{1};
+% else
+%     params = struct('species','Mouse','verbose',1,'keys','ENS\w*T\d*',...
+%         'gf','GGAATCGTTGCGGGTGTCCT','grr','CCGCAACATCCAGCATCGTG',...
+%         'T7r','CCCTATAGTGAGTCGTATTA',...
+%         'rRr','AGAGTGAGTAGTAGTGGAGT','rGr','GATGATGTAGTAGTAAGGGT',...
+%         'rBr','TGTGATGGAAGTTAGAGGGT','rIRr','GGAGTAGTTGGTTGTTAGGA');
+% end
 
-if params.verbose
+if params(1).verbose
     disp('concatenating oligos with adapters');
 end
 
@@ -19,7 +19,7 @@ end
 Header = Header';
 Sequence = Sequence';
 
-pos = regexp(Header, params.keys, 'end');
+pos = regexp(Header, params(1).keys, 'end');
 trimmedHeader = Header;
 for n = 1:length(Header)
     trimmedHeader{n,1} = Header{n,1}(1:pos{n,1});
@@ -31,7 +31,7 @@ geneNum = length(uniqueHeader);
 adapterHeader = uniqueHeader;
 adapterSequence = adapterSequence(1:geneNum)';
 
-adapterList = [params.species '.adapters.fas'];
+adapterList = [params(1).species '.adapters.fas'];
 if exist(adapterList, 'file')
     delete(adapterList);
 end
@@ -53,7 +53,7 @@ probeSequence = {};
 probeSequence3Seg = {};
 probeSequenceCore = {};
 for n = 1:length(adapterHeader)
-    if params.verbose && mod(n, 1000) == 1
+    if params(1).verbose && mod(n, 1000) == 1
         disp(['  concatenating oligos for transcript no. ' num2str(n)]);
     end
     index = ismember(trimmedHeader, adapterHeader{n,1});
@@ -66,9 +66,9 @@ for n = 1:length(adapterHeader)
         temp3Seg = probe3Seg{m,1};
         tempCore = probeCore{m,1};
         
-        temp = strcat(params.gf, adapterSequence{n,1}, temp, params.grr);
-        temp3Seg = strcat(adapterSequence{n,1}, temp3Seg, params.grr, 'CCC');
-        tempCore = strcat(adapterSequence{n,1}(11:20), tempCore, params.grr(1:10));
+        temp = strcat(params(1).gf, adapterSequence{n,1}, temp, params(1).grr);
+        temp3Seg = strcat(adapterSequence{n,1}, temp3Seg, params(1).grr, 'CCC');
+        tempCore = strcat(adapterSequence{n,1}(11:20), tempCore, params(1).grr(1:10));
         
         probe{m,1} = temp;
         probe3Seg{m,1} = temp3Seg;

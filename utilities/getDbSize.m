@@ -6,7 +6,7 @@ if length(varargin) >= 1
     params = varargin{1};
 else
     params = struct('species','Mouse','verbose',1,...
-        'thres',40,'querySize',20,'DbSize',5*10^7,'blastArgs','-S 1');
+        'thres',40,'querySize',20,'DbSize',10^8,'blastArgs','-S 1');
 end
 
 eValue = bitScore2eValue(params.thres, params.querySize, params.DbSize);

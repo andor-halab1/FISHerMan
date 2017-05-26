@@ -5,7 +5,7 @@
   </general>
   
   <!-- rnaSeq parameters -->
-  <!-- averageRNAseq.m and readRNASeq.m -->
+  <!-- averageRNASeq.m and readRNASeq.m -->
   <rnaSeq>
   	<data>2</data>
     <dir1>C:\FISHerMan\Db\mouse_frontal_cortex_mRNASeq_ENCFF653BKJ.xlsx</dir1>
@@ -89,5 +89,32 @@
 	<parallel>0</parallel>
 	<dir1>C:\FISHerMan\Db\Mouse.STList.fas</dir1>
   </oligos>
+  
+  <!-- adapters parameters -->
+  <!-- appendAdapters.m -->
+  <adapters>
+    <dir1>C:\FISHerMan\Db\Mouse.alladapters.fas</dir1>
+    <key1>ENS\w*T\d*</key1>
+	<gf>GGAATCGTTGCGGGTGTCCT</gf>
+	<grr>CCGCAACATCCAGCATCGTG</grr>
+	<T7r>CCCTATAGTGAGTCGTATTA</T7r>
+	<rRr>AGAGTGAGTAGTAGTGGAGT</rRr>
+	<rGr>GATGATGTAGTAGTAAGGGT</rGr>
+    <rBr>TGTGATGGAAGTTAGAGGGT</rBr>
+	<rIRr>GGAGTAGTTGGTTGTTAGGA</rIRr>
+  </adapters>
+  
+  <!-- 1stPCR parameters -->
+  <!-- blast1stPCR.m -->
+  <onePCR>
+    <key1>ENS\w*T\d*</key1>
+	<seqNum>1000</seqNum>
+	<thres>22</thres>
+	<querySize>20</querySize>
+    <blastArgs>-S 3</blastArgs>
+	<parallel>0</parallel>
+	<gf>GGAATCGTTGCGGGTGTCCT</gf>
+	<grr>CCGCAACATCCAGCATCGTG</grr>
+  </onePCR>
   
 </parameters>

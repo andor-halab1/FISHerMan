@@ -26,7 +26,7 @@ if params(1).verbose
     disp('  spliting fasta files for parallel computing');
 end
 
-filePathList = blastFileSplit(Header, Sequence, params(1).seqNum);
+filePathList = blastFileSplit(Header, Sequence, params(1).seqNum, params);
 fileNum = length(filePathList);
 
 %% Blast mouse oligos against abundant rna
