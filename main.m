@@ -65,14 +65,14 @@ oligoList=oligosParse(params.oligos);
 
 %% Save the probes of each transcripts into individual files
 [probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore]...
-    =blastOtherSteps(adapterList,probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore);
+    =blastOtherSteps(adapterList,probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore,params.otherSteps);
 
 %% Remove non-specific probes against the abundant rna database
 [probeHeader,probeSequence3Seg,probeSequence,probeSequenceCore]...
-    =blastAbundantRNA(adapterList,probeHeader,probeSequence3Seg,probeSequence,probeSequenceCore);
+    =blastAbundantRNA(adapterList,probeHeader,probeSequence3Seg,probeSequence,probeSequenceCore,params.arna);
 
 %% Generate the list of probes
-probeList=generateProbeList(adapterList,probeHeader,probeSequence);
+probeList=generateProbeList(adapterList,probeHeader,probeSequence,params.probeList);
 
 disp('done designing FISH probes');
 disp('FISHerMan is at rest');

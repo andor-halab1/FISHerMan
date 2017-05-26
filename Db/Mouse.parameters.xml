@@ -117,4 +117,40 @@
 	<grr>CCGCAACATCCAGCATCGTG</grr>
   </onePCR>
   
+  <!-- otherSteps parameters -->
+  <!-- blastOtherSteps.m -->
+  <otherSteps>
+    <key1>ENS\w*T\d*</key1>
+	<thres>22</thres>
+	<querySize>50</querySize>
+    <blastArgs1>-S 2</blastArgs1>
+	<blastArgs2>-S 3</blastArgs2>
+	<grr>CCGCAACATCCAGCATCGTG</grr>
+	<T7r>CCCTATAGTGAGTCGTATTA</T7r>
+	<rRr>AGAGTGAGTAGTAGTGGAGT</rRr>
+	<rGr>GATGATGTAGTAGTAAGGGT</rGr>
+    <rBr>TGTGATGGAAGTTAGAGGGT</rBr>
+	<rIRr>GGAGTAGTTGGTTGTTAGGA</rIRr>
+  </otherSteps>
+  
+  <!-- arna parameters -->
+  <!-- blastAbundantRNA.m -->
+  <arna>
+    <key1>ENS\w*T\d*</key1>
+	<seqNum>1000</seqNum>
+	<thres>30</thres>
+	<querySize>73</querySize>
+	<DbSize>200000</DbSize>
+    <blastArgs>-S 2</blastArgs>
+	<parallel>0</parallel>
+  </arna>
+  
+  <!-- probeList parameters -->
+  <!-- generateProbeList.m -->
+  <probeList>
+    <key1>ENS\w*T\d*</key1>
+	<number>48</number>
+	<dir1>C:\FISHerMan\Db\Mouse.STList.fas</dir1>
+  </probeList>
+  
 </parameters>

@@ -1,17 +1,18 @@
 function [probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore]...
-    =blastOtherSteps(adapterList,probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore,varargin)
+    =blastOtherSteps(adapterList,probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore,params)
 
-if length(varargin) >= 1
-    params = varargin{1};
-else
-    params = struct('species','Mouse','verbose',1,'keys','ENS\w*T\d*',...
-        'thres',22,'querySize',50,'blastArgs','',...
-        'grr','CCGCAACATCCAGCATCGTG','T7r','CCCTATAGTGAGTCGTATTA',...
-        'rRr','AGAGTGAGTAGTAGTGGAGT','rGr','GATGATGTAGTAGTAAGGGT',...
-        'rBr','TGTGATGGAAGTTAGAGGGT','rIRr','GGAGTAGTTGGTTGTTAGGA');
-end
+% if length(varargin) >= 1
+%     params = varargin{1};
+% else
+%     params = struct('species','Mouse','verbose',1,'keys','ENS\w*T\d*',...
+%         'thres',22,'querySize',50,...
+%         'blastArgs1','-S 2','blastArgs2','-S 3',...
+%         'grr','CCGCAACATCCAGCATCGTG','T7r','CCCTATAGTGAGTCGTATTA',...
+%         'rRr','AGAGTGAGTAGTAGTGGAGT','rGr','GATGATGTAGTAGTAAGGGT',...
+%         'rBr','TGTGATGGAAGTTAGAGGGT','rIRr','GGAGTAGTTGGTTGTTAGGA');
+% end
 
-if params.verbose
+if params(1).verbose
     disp('removing probes that non-specifically bind to 2nd PCR primers and other probes');
 end
 
@@ -21,17 +22,17 @@ adapterSequence = adapterSequence';
 
 simpleHeader = probeHeader;
 for n = 1:length(probeHeader)
-    pos = regexp(probeHeader{n,1}, params.keys, 'end');
+    pos = regexp(probeHeader{n,1}, params(1).keys, 'end');
     simpleHeader{n,1} = probeHeader{n,1}(1:pos);
 end
 
 seqDelete = [];
 for n = 1:length(adapterHeader)
-    if params.verbose% && mod(n, 1000) == 1
+    if params(1).verbose% && mod(n, 1000) == 1
         disp(['  working on trancript ' adapterHeader{n,1}]);
     end
     temp...
-        =blastOneTranscript(adapterHeader{n,1},adapterSequence{n,1},simpleHeader,probeSequenceCore);
+        =blastOneTranscript(adapterHeader{n,1},adapterSequence{n,1},simpleHeader,probeSequenceCore,params);
     seqDelete = [seqDelete temp];
 end
 
@@ -41,8 +42,8 @@ probeSequence3Seg(seqDelete)= [];
 probeSequenceCore(seqDelete)= [];
 
 %% Check how many transcripts are left after this step of screening
-[geneNumLeft,geneNumDelete]=checkTranscriptsLeft(adapterList,probeHeader);
-if params.verbose
+[geneNumLeft,geneNumDelete]=checkTranscriptsLeft(adapterList,probeHeader,params);
+if params(1).verbose
     disp([num2str(geneNumDelete) ' out of ' num2str(geneNumLeft+geneNumDelete)...
         ' FISH escaped FISHerMan''s net']);
 end

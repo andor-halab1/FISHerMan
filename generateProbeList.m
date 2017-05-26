@@ -1,19 +1,19 @@
-function probeList=generateProbeList(adapterList,probeHeader,probeSequence,varargin)
+function probeList=generateProbeList(adapterList,probeHeader,probeSequence,params)
 
-if length(varargin) >= 1
-    params = varargin{1};
-else
-    params = struct('species','Mouse','verbose',1,'number',48,...
-        'keys','ENS\w*T\d*');
-end
+% if length(varargin) >= 1
+%     params = varargin{1};
+% else
+%     params = struct('species','Mouse','verbose',1,'keys','ENS\w*T\d*',...
+%         'number',48,'specialTranscripts','C:\FISHerMan\Db\Mouse.STList.fas');
+% end
 
 %% Remove transcripts without enough probes
-if params.verbose
+if params(1).verbose
     disp('generating the list of probes to order');
     disp('  removing transcripts without enough probes');
 end
 
-pos = regexp(probeHeader, params.keys, 'end');
+pos = regexp(probeHeader, params(1).keys, 'end');
 trimHeader = {};
 for n = 1:length(probeHeader)
     trimHeader{end+1} = probeHeader{n,1}(1:pos{n,1});
@@ -24,11 +24,12 @@ uniqueHeader = unique(trimHeader, 'stable');
 indexTotal = zeros(length(trimHeader),1);
 for n = 1:length(uniqueHeader)
     index = ismember(trimHeader, uniqueHeader{n,1});
-    if sum(index) < params.number && checkSpecialTranscripts(uniqueHeader{n,1}) % for Bin's special sequences
+    if sum(index) < params(1).number &&...
+            checkSpecialTranscripts(uniqueHeader{n,1},params) % for Bin's special sequences
         indexTotal = indexTotal+index;
-        if params.verbose
+        if params(1).verbose
             disp(['  transcript ' uniqueHeader{n,1} ...
-                ' has less than ' num2str(params.number) ' probes']);
+                ' has less than ' num2str(params(1).number) ' probes']);
         end
     end
 end
@@ -43,9 +44,9 @@ uniqueHeader = unique(trimHeader, 'stable');
 indexTotal = [];
 for n = 1:length(uniqueHeader)
     index = ismember(trimHeader, uniqueHeader{n,1});
-    if sum(index) > params.number
+    if sum(index) > params(1).number
         index=find(index>0);
-        index=index(params.number+1:end);
+        index=index(params(1).number+1:end);
         indexTotal=[indexTotal;index];
     end
 end
@@ -53,19 +54,19 @@ end
 probeHeader(indexTotal) = [];
 probeSequence(indexTotal) = [];
 
-disp('  randomizing and saving the list of probes');
-indexTotal = randperm(length(probeHeader))';
-probeHeader = probeHeader(indexTotal);
-probeSequence = probeSequence(indexTotal);
-probeList = [params.species '.probes.fas'];
+% disp('  randomizing and saving the list of probes');
+% indexTotal = randperm(length(probeHeader))';
+% probeHeader = probeHeader(indexTotal);
+% probeSequence = probeSequence(indexTotal);
+probeList = [params(1).species '.probes.nr.fas'];
 if exist(probeList, 'file')
     delete(probeList);
 end
 fastawrite(probeList,probeHeader,probeSequence);
 
 %% Check how many transcripts are left after this step of screening
-[geneNumLeft,geneNumDelete]=checkTranscriptsLeft(adapterList,probeHeader);
-if params.verbose
+[geneNumLeft,geneNumDelete]=checkTranscriptsLeft(adapterList,probeHeader,params);
+if params(1).verbose
     disp([num2str(geneNumDelete) ' out of ' num2str(geneNumLeft+geneNumDelete)...
         ' FISH escaped FISHerMan''s net']);
 end

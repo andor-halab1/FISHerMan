@@ -1,11 +1,11 @@
-[probeHeader,probeSequence]=fastaread('C:\FISHerMan\Mouse\Mouse.probestemp.fas');
+probeList = 'C:\FISHerMan\Mouse\Mouse.probes.selected.fas';
+[probeHeader,probeSequence]=fastaread(probeList);
 probeHeader=probeHeader';
 probeSequence=probeSequence';
 
 indexTotal = randperm(length(probeHeader))';
 probeHeaderRandom = probeHeader(indexTotal);
 probeSequenceRandom = probeSequence(indexTotal);
-probeList = 'C:\FISHerMan\Mouse\Mouse.probes.selected.fas';
 if exist(probeList, 'file')
     delete(probeList);
 end

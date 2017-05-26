@@ -1,10 +1,10 @@
-function seqDelete=findSeqDelete(data,varargin)
+function seqDelete=findSeqDelete(data)
 
-if length(varargin) >= 1
-    params = varargin{1};
-else
-    params = struct('species','Mouse','verbose',1);
-end
+% if length(varargin) >= 1
+%     params = varargin{1};
+% else
+%     params = struct('species','Mouse','verbose',1);
+% end
 
 %% Delete probes that non-specifically bind 2nd PCR primers
 seqDelete = [];
