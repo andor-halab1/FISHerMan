@@ -1,17 +1,16 @@
-function oligos = oligosParse(varargin)
+function oligos = oligosParse(params)
 
 % oligos = 'C:\OligoArray\oligos.txt';
 
-if length(varargin) >= 1
-    params = varargin{1};
-else
-    params = struct('species','Mouse','verbose',1,...
-        'keys',{'ENS\w*T\d*','ENS\w*G\d*'},'number',48,...
-        'thres',30,'querySize',30,'DbSize',2*10^5,'seqNum',1000,...
-        'blastArgs','-S 2','parallel', 0,...
-        'specialTranscripts',...
-        struct('specialTranscripts',{'ENSSPT','ENSMUST00000100497','ENSMUST00000118875'}));
-end
+% if length(varargin) >= 1
+%     params = varargin{1};
+% else
+%     params = struct('species','Mouse','verbose',1,...
+%         'keys',{'ENS\w*T\d*','ENS\w*G\d*'},'number',48,...
+%         'thres',30,'querySize',30,'DbSize',2*10^5,'seqNum',1000,...
+%         'blastArgs','-S 2','parallel', 0,...
+%         'specialTranscripts','C:\FISHerMan\Db\Mouse.STList.fas');
+% end
 
 oligos = [params(1).species '.tempoligos.txt'];
 if ~exist(oligos, 'file')
@@ -116,7 +115,7 @@ indexTotal = zeros(length(trimNames),1);
 for n = 1:length(uniqueNames)
     index = ismember(trimNames, uniqueNames{n,1});
     if sum(index) < params(1).number &&... 
-            checkSpecialTranscripts(uniqueNames{n,1},params.specialTranscripts) % for Bin's special sequences
+            checkSpecialTranscripts(uniqueNames{n,1},params) % for Bin's special sequences
         indexTotal = indexTotal+index;
         if params(1).verbose
             disp(['  transcript ' uniqueNames{n,1} ...

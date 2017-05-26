@@ -1,13 +1,13 @@
 % Rearrange the list of oligos by grouping same genes together.
 
 function [rearrangedHeader,rearrangedSequence,rearrangednonSequence]=...
-    rearrangeOligos(Header,Sequence,nonSequence,varargin)
+    rearrangeOligos(Header,Sequence,nonSequence,params)
 
-if length(varargin) >= 1
-    params = varargin{1};
-else
-    params = struct('species','Mouse','verbose',1);
-end
+% if length(varargin) >= 1
+%     params = varargin{1};
+% else
+%     params = struct('species','Mouse','verbose',1);
+% end
 
 uniqueHeader = unique(Header, 'stable');
 

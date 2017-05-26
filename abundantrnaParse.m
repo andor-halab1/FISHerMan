@@ -1,21 +1,21 @@
-function [abundantrna,Header,Sequence]...
-    =abundantrnaParse(cdnaHeader,cdnaSequence,ncrnaHeader,ncrnaSequence,varargin)
+function [Header,Sequence]...
+    =abundantrnaParse(cdnaHeader,cdnaSequence,ncrnaHeader,ncrnaSequence,seqData,params)
 
-switch length(varargin)
-    case 0
-        seqData = [];
-        params = struct('species','Mouse','verbose',1,...
-            'percent',0.001,...
-            'keys',{'ENS\w*T\d*',':rRNA',':Mt_rRNA',':tRNA',':Mt_tRNA'});
-    case 1
-        seqData = varargin{1};
-        params = struct('species','Mouse','verbose',1,...
-            'percent',0.001,...
-            'keys',{'ENS\w*T\d*',':rRNA',':Mt_rRNA',':tRNA',':Mt_tRNA'});
-    otherwise
-        seqData = varargin{1};
-        params = varargin{2};
-end
+% switch length(varargin)
+%     case 0
+%         seqData = [];
+%         params = struct('species','Mouse','verbose',1,...
+%             'percent',0.001,...
+%             'keys',{'ENS\w*T\d*',':rRNA',':Mt_rRNA',':tRNA',':Mt_tRNA'});
+%     case 1
+%         seqData = varargin{1};
+%         params = struct('species','Mouse','verbose',1,...
+%             'percent',0.001,...
+%             'keys',{'ENS\w*T\d*',':rRNA',':Mt_rRNA',':tRNA',':Mt_tRNA'});
+%     otherwise
+%         seqData = varargin{1};
+%         params = varargin{2};
+% end
 
 if params(1).verbose
     disp('generating abundant rna database files for Blast');
@@ -44,7 +44,7 @@ transcriptID = unique(transcriptID);
 
 Header = vertcat(cdnaHeader,ncrnaHeader);
 Sequence = vertcat(cdnaSequence,ncrnaSequence);
-[Header, Sequence] = pickExpressedSeq(transcriptID, Header, Sequence);
+[Header, Sequence] = pickExpressedSeq(transcriptID, Header, Sequence, params);
 
 abundantrna = [params(1).species '.abundantrna.fas'];
 if exist(abundantrna, 'file')

@@ -1,14 +1,17 @@
-function notSpecialTranscript = checkSpecialTranscripts(transcriptName,varargin)
+function notSpecialTranscript = checkSpecialTranscripts(transcriptName,params)
 
-if length(varargin) >= 1
-    params = varargin{1};
-else
-    params = struct('species','Mouse','verbose',1,...
-        'specialTranscripts',{'ENSSPT','ENSMUST00000100497','ENSMUST00000118875'});
-end
+% if length(varargin) >= 1
+%     params = varargin{1};
+% else
+%     params = struct('species','Mouse','verbose',1,...
+%         'specialTranscripts','C:\FISHerMan\Db\Mouse.STList.fas');
+% end
+
+[specialTranscripts,~]=fastaread(params(1).specialTranscripts);
+specialTranscripts=specialTranscripts';
 
 notSpecialTranscript = true;
-for n = 1:length(params)
+for n = 1:length(specialTranscripts)
     notSpecialTranscript = notSpecialTranscript && ...
-        isempty(strfind(transcriptName,params(n).specialTranscripts));
+        isempty(strfind(transcriptName,specialTranscripts{n,1}));
 end

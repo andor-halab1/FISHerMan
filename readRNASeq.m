@@ -1,12 +1,12 @@
-function data = readRNASeq(seqData, varargin)
+function data = readRNASeq(seqData, params)
 
 % seqData = 'C:\FISHerMan\Mouse\mouse_frontal_cortex_mRNASeq_ENCFF703SOK.xlsx';
 
-if length(varargin) >= 1
-    params = varargin{1};
-else
-    params = struct('species','Mouse','verbose',1,'keys',{'ENS\w*T\d*','ENS\w*G\d*'});
-end
+% if length(varargin) >= 1
+%     params = varargin{1};
+% else
+%     params = struct('species','Mouse','verbose',1,'keys',{'ENS\w*T\d*','ENS\w*G\d*'});
+% end
 
 if params(1).verbose
     disp('reading the RNA-seq data file');

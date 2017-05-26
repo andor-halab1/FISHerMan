@@ -1,20 +1,20 @@
-function [cdna,Header,Sequence]=cdnaParse(cdna,varargin)
+function [Header,Sequence]=cdnaParse(cdna,seqData,params)
 
 % cdna = 'C:\OligoArray\Mouse38.cdna.fa';
 
-switch length(varargin)
-    case 0
-        seqData = [];
-        params = struct('species','Mouse','verbose',1,...
-            'keys',{'ENS\w*T\d*','ENS\w*G\d*'});
-    case 1
-        seqData = varargin{1};
-        params = struct('species','Mouse','verbose',1,...
-            'keys',{'ENS\w*T\d*','ENS\w*G\d*'});
-    otherwise
-        seqData = varargin{1};
-        params = varargin{2};
-end
+% switch length(varargin)
+%     case 0
+%         seqData = [];
+%         params = struct('species','Mouse','verbose',1,...
+%             'keys',{'ENS\w*T\d*','ENS\w*G\d*'});
+%     case 1
+%         seqData = varargin{1};
+%         params = struct('species','Mouse','verbose',1,...
+%             'keys',{'ENS\w*T\d*','ENS\w*G\d*'});
+%     otherwise
+%         seqData = varargin{1};
+%         params = varargin{2};
+% end
 
 if params(1).verbose
     disp('reading the cdna data file');
@@ -50,7 +50,7 @@ if ~isempty(seqData)
     if params(1).verbose
         disp('  picking expressed sequences according to RNA-seq data');
     end
-    [Header, Sequence] = pickExpressedSeq(seqData, Header, Sequence);
+    [Header, Sequence] = pickExpressedSeq(seqData, Header, Sequence, params);
 end
 
 if params(1).verbose

@@ -1,20 +1,20 @@
-function [ncrna,trna,Header,Sequence]=ncrnaParse(ncrna,trna,varargin)
+function [Header,Sequence]=ncrnaParse(ncrna,seqData,trna,params)
 
 % ncrna = 'C:\OligoArray\Mouse38.ncrna.fa';
 
-switch length(varargin)
-    case 0
-        seqData = [];
-        params = struct('species','Mouse','verbose',1,...
-            'keys',{'ENS\w*T\d*','ENS\w*G\d*','gene_biotype:\S*'});
-    case 1
-        seqData = varargin{1};
-        params = struct('species','Mouse','verbose',1,...
-            'keys',{'ENS\w*T\d*','ENS\w*G\d*','gene_biotype:\S*'});
-    otherwise
-        seqData = varargin{1};
-        params = varargin{2};
-end
+% switch length(varargin)
+%     case 0
+%         seqData = [];
+%         params = struct('species','Mouse','verbose',1,...
+%             'keys',{'ENS\w*T\d*','ENS\w*G\d*','gene_biotype:\S*'});
+%     case 1
+%         seqData = varargin{1};
+%         params = struct('species','Mouse','verbose',1,...
+%             'keys',{'ENS\w*T\d*','ENS\w*G\d*','gene_biotype:\S*'});
+%     otherwise
+%         seqData = varargin{1};
+%         params = varargin{2};
+% end
 
 if params(1).verbose
     disp('reading the ncrna data file');
@@ -55,7 +55,7 @@ if ~isempty(seqData)
     if params(1).verbose
         disp('  picking expressed sequences according to RNA-seq data');
     end
-    [Header, Sequence] = pickExpressedSeq(seqData, Header, Sequence);
+    [Header, Sequence] = pickExpressedSeq(seqData, Header, Sequence, params);
 end
 
 if ~isempty(trna)
@@ -68,10 +68,6 @@ if ~isempty(trna)
     for n = 1:length(trnaHeader)
         Header{end+1,1}=['ENSRNAT' num2str(n) ':ENSRNAG' num2str(n) ':tRNA'];
         Sequence{end+1,1}=trnaSequence{n,1};
-    end
-    temp = strfind(trna,'\');
-    if ~isempty(temp)
-        trna = trna(temp(end)+1:end);
     end
 end
 

@@ -7,6 +7,10 @@
   <!-- rnaSeq parameters -->
   <!-- averageRNAseq.m and readRNASeq.m -->
   <rnaSeq>
+  	<data>2</data>
+    <dir1>C:\FISHerMan\Db\mouse_frontal_cortex_mRNASeq_ENCFF653BKJ.xlsx</dir1>
+	<dir2>C:\FISHerMan\Db\mouse_frontal_cortex_mRNASeq_ENCFF703SOK.xlsx</dir2>
+	<mRNA>1</mRNA>
     <key1>ENS\w*T\d*</key1>
 	<key2>ENS\w*G\d*</key2>
     <thres>0.1</thres>
@@ -15,6 +19,7 @@
   <!-- cdna parameters -->
   <!-- cdnaParse.m -->
   <cdna>
+    <dir1>C:\FISHerMan\Db\Mouse38.cdna.fa</dir1>
     <key1>ENS\w*T\d*</key1>
 	<key2>ENS\w*G\d*</key2>
   </cdna>
@@ -22,6 +27,9 @@
   <!-- ncrna parameters -->
   <!-- ncrnaParse.m -->
   <ncrna>
+    <dir1>C:\FISHerMan\Db\Mouse38.ncrna.fa</dir1>
+	<tRNA>1</tRNA>
+	<dirT>C:\FISHerMan\Db\Mouse.trna.fas</dirT>
     <key1>ENS\w*T\d*</key1>
 	<key2>ENS\w*G\d*</key2>
     <key3>gene_biotype:\S*</key3>
@@ -41,6 +49,7 @@
   <!-- transcriptList parameters -->
   <!-- transcriptListParse.m -->
   <transcriptList>
+    <dir1>C:\FISHerMan\Db\Mouse.transcriptList.fas</dir1>
     <length>40</length>
 	<number>24</number>
   </transcriptList>
@@ -72,15 +81,13 @@
     <key1>ENS\w*T\d*</key1>
 	<key2>ENS\w*G\d*</key2>
 	<number>48</number>
+	<seqNum>1000</seqNum>
 	<thres>30</thres>
 	<querySize>30</querySize>
 	<DbSize>200000</DbSize>
-	<seqNum>1000</seqNum>
     <blastArgs>-S 2</blastArgs>
 	<parallel>0</parallel>
-	<ST1>ENSSPT</ST1>
-	<ST2>ENSMUST00000100497</ST2>
-	<ST3>ENSMUST00000118875</ST3>
+	<dir1>C:\FISHerMan\Db\Mouse.STList.fas</dir1>
   </oligos>
   
 </parameters>
