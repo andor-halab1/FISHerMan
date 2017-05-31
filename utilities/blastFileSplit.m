@@ -1,23 +1,14 @@
-function filePathList = blastFileSplit(Header, Sequence, seqNum, params)
+function filePathList = blastFileSplit(Header, Sequence, params)
 
-% switch length(varargin)
-%     case 0
-%         seqNum = 48;
-%         params = struct('species','Mouse','verbose',1,'keys','ENS\w*T\d*');
-%     case 1
-%         seqNum = varargin{1};
-%         params = struct('species','Mouse','verbose',1,'keys','ENS\w*T\d*');
-%     otherwise
-%         seqNum = varargin{1};
-%         params = varargin{2};
-% end
+% params = struct('species','Mouse','verbose',1,'seqNum',1000);
 
+seqNum = params(1).seqNum;
 filePathList = {};
 
 % MatLab's use of blastlocal requires short entry names
 for n = 1:length(Header)
-    pos = regexp(Header{n,1}, params(1).keys, 'end');
-    Header{n,1} = Header{n,1}(1:pos);
+    pos = regexp(Header{n,1}, ':');
+    Header{n,1} = Header{n,1}(1:pos(1)-1);
     Header{n,1} = strcat(Header{n,1}, '=', num2str(n));
 end
 

@@ -1,24 +1,17 @@
 function oligos = oligosParse(params)
 
-% oligos = 'C:\OligoArray\oligos.txt';
+% params = struct('species','Mouse','verbose',1,...
+%     'number',48,'seqNum',1000,'thres',30,'querySize',30,...
+%     'DbSize',2*10^5,'blastArgs','-S 2','parallel', 0,...
+%     'specialTranscripts','C:\FISHerMan\Db\Mouse.STList.fas');
 
-% if length(varargin) >= 1
-%     params = varargin{1};
-% else
-%     params = struct('species','Mouse','verbose',1,...
-%         'keys',{'ENS\w*T\d*','ENS\w*G\d*'},'number',48,...
-%         'thres',30,'querySize',30,'DbSize',2*10^5,'seqNum',1000,...
-%         'blastArgs','-S 2','parallel', 0,...
-%         'specialTranscripts','C:\FISHerMan\Db\Mouse.STList.fas');
-% end
+if params(1).verbose
+    disp('reading the result file from OligoArray');
+end
 
 oligos = [params(1).species '.tempoligos.txt'];
 if ~exist(oligos, 'file')
     warning('missing important files from OligoArray');
-end
-
-if params(1).verbose
-    disp('reading the result file from OligoArray');
 end
 
 fid = fopen(oligos,'r');
@@ -39,14 +32,16 @@ for n = 1:length(geneNames)
     if params(1).verbose && mod(n, 1000) == 1
         disp(['  analyzing oligo entry no. ' num2str(n)]);
     end
-    [pos1, pos2] = regexp(nonspecificHits{n,1}, params(2).keys, 'start', 'end');
+    
+    pos = regexp(geneNames{n,1}, ':');
+    geneName=geneNames{n,1}(pos(1)+1:end);
     
     flag = 0;
-    for m = 1:length(pos1)
-        if ~strfind(geneNames{n,1}, nonspecificHits{n,1}(pos1(m):pos2(m)))
-            flag = 1;
-        end
+    if length(regexp(nonspecificHits{n,1}, geneName)) < ...
+            length(regexp(nonspecificHits{n,1}, ':'))
+        flag = 1;
     end
+    
     if flag == 1
         index = [index n];
     end
@@ -66,33 +61,6 @@ for n = 1:length(specificHits)
     specificHits{n,1} = seqrcomplement(specificHits{n,1});
 end
 
-%% Remove transcripts without enough oligos
-% if params.verbose
-%     disp('removing transcripts without enough oligos');
-% end
-
-% pos = regexp(geneNames, params(1).keys, 'end');
-% trimNames = {};
-% for n = 1:length(geneNames)
-%     trimNames{end+1} = geneNames{n,1}(1:pos{n,1});
-% end
-% trimNames = trimNames';
-% uniqueNames = unique(trimNames, 'stable');
-% 
-% indexTotal = zeros(length(trimNames),1);
-% for n = 1:length(uniqueNames)
-%     index = ismember(trimNames, uniqueNames{n,1});
-%     if sum(index) < params.number
-%         indexTotal = indexTotal+index;
-%         disp(['transcript ' uniqueNames{n,1} ' has less than ' num2str(params.number) ' probes']);
-%     end
-% end
-% 
-% indexTotal = logical(indexTotal);
-% geneNames(indexTotal) = [];
-% nonspecificHits(indexTotal) = [];
-% specificHits(indexTotal) = [];
-
 %% Blast oligos against abundant rna database and remove non-specific oligos
 [geneNames,specificHits,nonspecificHits]...
     =blastAbundantRNASimple(geneNames,specificHits,nonspecificHits,params);
@@ -103,10 +71,10 @@ if params(1).verbose
     disp('removing transcripts without enough oligos');
 end
 
-pos = regexp(geneNames, params(1).keys, 'end');
+pos = regexp(geneNames, ':');
 trimNames = {};
 for n = 1:length(geneNames)
-    trimNames{end+1} = geneNames{n,1}(1:pos{n,1});
+    trimNames{end+1} = geneNames{n,1}(1:pos{n,1}(1)-1);
 end
 trimNames = trimNames';
 uniqueNames = unique(trimNames, 'stable');

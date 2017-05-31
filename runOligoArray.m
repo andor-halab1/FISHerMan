@@ -65,5 +65,9 @@ if params.verbose
     disp('done generating oligos');
 end
 
-copyfile([params.oligoArrayPath 'oligos.txt'], [params.species '.tempoligos.txt']);
+tempOligos=[params.species '.tempoligos.txt'];
+if exist(tempOligos,'file')
+    delete(tempOligos);
+end
+copyfile([params.oligoArrayPath 'oligos.txt'], tempOligos);
 

@@ -29,6 +29,11 @@ probeList=xmlParse(parameters, 'parameters', 'probeList');
 
 %% Parse general parameters
 verbose=xmlParse(general, 'general', 'verbose');
+gkey1=xmlParse(general, 'general', 'key1');
+gkey2=xmlParse(general, 'general', 'key2');
+gkey3=xmlParse(general, 'general', 'key3');
+gkey4=xmlParse(general, 'general', 'key4');
+gkey5=xmlParse(general, 'general', 'key5');
 
 %% Parse parameters for rnaSeq
 data=xmlParse(rnaSeq, 'rnaSeq', 'data');
@@ -58,13 +63,11 @@ params.rnaSeq = struct('species',species,...
 
 %% Parse parameters for cdna
 dir1=xmlParse(cdna, 'cdna', 'dir1');
-key1=xmlParse(cdna, 'cdna', 'key1');
-key2=xmlParse(cdna, 'cdna', 'key2');
 
 params.cdna = struct('species',species,...
     'verbose',str2double(verbose.getFirstChild.getData),...
     'dir1',char(dir1.getFirstChild.getData),...
-    'keys',{char(key1.getFirstChild.getData),char(key2.getFirstChild.getData)});
+    'keys',{char(gkey1.getFirstChild.getData),char(gkey3.getFirstChild.getData)});
 
 %% Parse parameters for ncrna
 dir1=xmlParse(ncrna, 'ncrna', 'dir1');
@@ -74,17 +77,14 @@ if str2double(tRNA.getFirstChild.getData)==1
 else
     dirT=tRNA;
 end
-key1=xmlParse(ncrna, 'ncrna', 'key1');
-key2=xmlParse(ncrna, 'ncrna', 'key2');
-key3=xmlParse(ncrna, 'ncrna', 'key3');
 
 params.ncrna = struct('species',species,...
     'verbose',str2double(verbose.getFirstChild.getData),...
     'dir1',char(dir1.getFirstChild.getData),...
     'tRNA',str2double(tRNA.getFirstChild.getData),...
     'dirT',char(dirT.getFirstChild.getData),...
-    'keys',{char(key1.getFirstChild.getData),char(key2.getFirstChild.getData),...
-    char(key3.getFirstChild.getData)});
+    'keys',{char(gkey2.getFirstChild.getData),char(gkey3.getFirstChild.getData),...
+    char(gkey4.getFirstChild.getData)});
 
 %% Parse parameters for abundantrna
 percent=xmlParse(abundantrna, 'abundantrna', 'percent');
@@ -92,14 +92,12 @@ key1=xmlParse(abundantrna, 'abundantrna', 'key1');
 key2=xmlParse(abundantrna, 'abundantrna', 'key2');
 key3=xmlParse(abundantrna, 'abundantrna', 'key3');
 key4=xmlParse(abundantrna, 'abundantrna', 'key4');
-key5=xmlParse(abundantrna, 'abundantrna', 'key5');
 
 params.abundantrna = struct('species',species,...
     'verbose',str2double(verbose.getFirstChild.getData),...
     'percent',str2double(percent.getFirstChild.getData),...
     'keys',{char(key1.getFirstChild.getData),char(key2.getFirstChild.getData),...
-    char(key3.getFirstChild.getData),char(key4.getFirstChild.getData),...
-    char(key5.getFirstChild.getData)});
+    char(key3.getFirstChild.getData),char(key4.getFirstChild.getData)});
 
 %% Parse parameters for transcriptList
 dir1=xmlParse(transcriptList, 'transcriptList', 'dir1');
@@ -116,8 +114,6 @@ params.transcriptList = struct('species',species,...
 
 
 %% Parse parameters for oligos
-key1=xmlParse(oligos, 'oligos', 'key1');
-key2=xmlParse(oligos, 'oligos', 'key2');
 num=xmlParse(oligos, 'oligos', 'number');
 seqNum=xmlParse(oligos, 'oligos', 'seqNum');
 thres=xmlParse(oligos, 'oligos', 'thres');
@@ -125,11 +121,10 @@ querySize=xmlParse(oligos, 'oligos', 'querySize');
 DbSize=xmlParse(oligos, 'oligos', 'DbSize');
 blastArgs=xmlParse(oligos, 'oligos', 'blastArgs');
 parallel=xmlParse(oligos, 'oligos', 'parallel');
-dir1=xmlParse(oligos, 'oligos', 'dir1');
+dirST=xmlParse(oligos, 'oligos', 'dirST');
 
 params.oligos = struct('species',species,...
     'verbose',str2double(verbose.getFirstChild.getData),...
-    'keys',{char(key1.getFirstChild.getData),char(key2.getFirstChild.getData)},...
     'number',str2double(num.getFirstChild.getData),...
     'seqNum',str2double(seqNum.getFirstChild.getData),...
     'thres',str2double(thres.getFirstChild.getData),...
@@ -137,7 +132,7 @@ params.oligos = struct('species',species,...
     'DbSize',str2double(DbSize.getFirstChild.getData),...
     'blastArgs',char(blastArgs.getFirstChild.getData),...
     'parallel',str2double(parallel.getFirstChild.getData),...
-    'specialTranscripts',char(dir1.getFirstChild.getData));
+    'specialTranscripts',char(dirST.getFirstChild.getData));
 
 %% Parse parameters for adapters
 dir1=xmlParse(adapters, 'adapters', 'dir1');

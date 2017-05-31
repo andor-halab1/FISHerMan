@@ -9,7 +9,7 @@ function [Header,Sequence,nonSequence]...
 %     params = varargin{1};
 % else
 %     params = struct('species','Mouse','verbose',1,...
-%         'thres',30,'querySize',30,'DbSize',2*10^5,'seqNum',1000,...
+%         'seqNum',1000,'thres',30,'querySize',30,'DbSize',2*10^5,...
 %         'blastArgs','-S 2','parallel', 0);
 % end
 
@@ -26,7 +26,7 @@ if params(1).verbose
     disp('  spliting fasta files for parallel computing');
 end
 
-filePathList = blastFileSplit(Header, Sequence, params(1).seqNum, params);
+filePathList = blastFileSplit(Header, Sequence, params);
 fileNum = length(filePathList);
 
 %% Blast mouse oligos against abundant rna
@@ -43,13 +43,13 @@ if params(1).parallel
     parfor k = 1:fileNum
         if verbose
             disp(['  blasting temporary file no. ' num2str(k)]);
-            startTime(k) = tic;
+%             startTime(k) = tic;
         end
         blastData{k,1} = blastOp(filePathList{k}, DbPath, blastArgs);
-        if verbose
-            totalTime(k) = toc(startTime(k));
-            disp(['  elapsed time is ' num2str(totalTime(k)) ' seconds']);
-        end
+%         if verbose
+%             totalTime(k) = toc(startTime(k));
+%             disp(['  elapsed time is ' num2str(totalTime(k)) ' seconds']);
+%         end
     end
     delete(poolobj);
 else
@@ -76,7 +76,7 @@ seqDelete = [];
 for n = 1:length(data)
     flag = 0;
     for m = 1:length(data(n).Hits)
-        if ~strfind(data(n).Query,data(n).Hits(m).Name)
+        if isempty(strfind(data(n).Query,data(n).Hits(m).Name))
             flag = 1;
         end
     end

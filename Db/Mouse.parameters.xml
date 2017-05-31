@@ -2,6 +2,10 @@
   <!-- general parameters -->
   <general>
     <verbose>1</verbose>
+	<key1>cdna</key1>
+	<key2>ncrna</key2>
+	<key3>gene:\S*</key3>
+	<key4>gene_biotype:\S*</key4>
   </general>
   
   <!-- rnaSeq parameters -->
@@ -20,8 +24,6 @@
   <!-- cdnaParse.m -->
   <cdna>
     <dir1>C:\FISHerMan\Db\Mouse38.cdna.fa</dir1>
-    <key1>ENS\w*T\d*</key1>
-	<key2>ENS\w*G\d*</key2>
   </cdna>
   
   <!-- ncrna parameters -->
@@ -30,20 +32,16 @@
     <dir1>C:\FISHerMan\Db\Mouse38.ncrna.fa</dir1>
 	<tRNA>1</tRNA>
 	<dirT>C:\FISHerMan\Db\Mouse.trna.fas</dirT>
-    <key1>ENS\w*T\d*</key1>
-	<key2>ENS\w*G\d*</key2>
-    <key3>gene_biotype:\S*</key3>
   </ncrna>
   
   <!-- abundantrna parameters -->
   <!-- abundantrnaParse.m -->
   <abundantrna>
     <percent>0.001</percent>
-    <key1>ENS\w*T\d*</key1>
-    <key2>:rRNA</key2>
-	<key3>:Mt_rRNA</key3>
-	<key4>:tRNA</key4>
-	<key5>:Mt_tRNA</key5>
+    <key1>:rRNA</key1>
+	<key2>:Mt_rRNA</key2>
+	<key3>:tRNA</key3>
+	<key4>:Mt_tRNA</key4>
   </abundantrna>
   
   <!-- transcriptList parameters -->
@@ -78,8 +76,6 @@
   <!-- oligos parameters -->
   <!-- oligosParse.m -->
   <oligos>
-    <key1>ENS\w*T\d*</key1>
-	<key2>ENS\w*G\d*</key2>
 	<number>48</number>
 	<seqNum>1000</seqNum>
 	<thres>30</thres>
@@ -87,7 +83,7 @@
 	<DbSize>200000</DbSize>
     <blastArgs>-S 2</blastArgs>
 	<parallel>0</parallel>
-	<dir1>C:\FISHerMan\Db\Mouse.STList.fas</dir1>
+	<dirST>C:\FISHerMan\Db\Mouse.STList.fas</dirST>
   </oligos>
   
   <!-- adapters parameters -->

@@ -8,3 +8,5 @@
 *.nsq
 *.log
 
+# MatLab temp files
+*.asv

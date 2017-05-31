@@ -2,11 +2,9 @@ function [longHeader,longSequence]=transcriptListParse(transcriptList,cdnaHeader
     ncrnaHeader,ncrnaSequence,params)
 % transcriptList = 'C:\FISHerMan\transcriptList.fas';
 
-% if length(varargin) >= 1
-%     params = varargin{1};
-% else
-%     params = struct('species','Mouse','verbose',1,'length',40,'number',24);
-% end
+% params = struct('species','Mouse','verbose',1,...
+%     'dir1','C:\FISHerMan\Db\Mouse.transcriptList.fas',...
+%     'length',40,'number',24);
 
 %% Pick transcript sequences that are longer than a certain threshold
 if params(1).verbose
@@ -22,8 +20,8 @@ longHeader = {};
 longSequence = {};
 for n = 1:length(cdnaSequence)
     temp = cdnaHeader{n,1};
-    pos = regexp(temp, 'ENS\w*T\d*', 'end');
-    temp = temp(1:pos);
+    pos = regexp(temp, ':');
+    temp = temp(1:pos(1)-1);
     if length(cdnaSequence{n,1}) >= (params(1).length*params(1).number) &&...
             sum(ismember(targetHeader, temp))
         longHeader{end+1} = cdnaHeader{n,1};
@@ -32,11 +30,11 @@ for n = 1:length(cdnaSequence)
 end
 for n = 1:length(ncrnaSequence)
     temp = ncrnaHeader{n,1};
-    pos = regexp(temp, 'ENS\w*T\d*', 'end');
-    temp = temp(1:pos);
+    pos = regexp(temp, ':');
+    temp = temp(1:pos(1)-1);
     if length(ncrnaSequence{n,1}) >= (params(1).length*params(1).number) &&...
             sum(ismember(targetHeader, temp))
-        longHeader{end+1} = ncrnaHeader{n,1};
+        longHeader{end+1} = ncrnaHeader{n,1}(1:pos(2)-1);
         longSequence{end+1} = ncrnaSequence{n,1};
     end
 end

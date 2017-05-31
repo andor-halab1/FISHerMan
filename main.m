@@ -63,7 +63,7 @@ oligoList=oligosParse(params.oligos);
 [probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore]...
     =blast1stPCR(adapterList,probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore,params.onePCR);
 
-%% Save the probes of each transcripts into individual files
+%% Remove non-specific probes that will affect other synthesis steps
 [probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore]...
     =blastOtherSteps(adapterList,probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore,params.otherSteps);
 

@@ -1,20 +1,9 @@
 function [Header,Sequence]=ncrnaParse(ncrna,seqData,trna,params)
 
-% ncrna = 'C:\OligoArray\Mouse38.ncrna.fa';
-
-% switch length(varargin)
-%     case 0
-%         seqData = [];
-%         params = struct('species','Mouse','verbose',1,...
-%             'keys',{'ENS\w*T\d*','ENS\w*G\d*','gene_biotype:\S*'});
-%     case 1
-%         seqData = varargin{1};
-%         params = struct('species','Mouse','verbose',1,...
-%             'keys',{'ENS\w*T\d*','ENS\w*G\d*','gene_biotype:\S*'});
-%     otherwise
-%         seqData = varargin{1};
-%         params = varargin{2};
-% end
+% params = struct('species','Mouse','verbose',1,...
+%     'dir1','C:\FISHerMan\Db\Mouse38.ncrna.fa',...
+%     'tRNA',1,'dirT','C:\FISHerMan\Db\Mouse.trna.fas',...
+%     'keys',{'ncrna','gene:\S*','gene_biotype:\S*'});
 
 if params(1).verbose
     disp('reading the ncrna data file');
@@ -34,18 +23,27 @@ end
 
 for n = 1:length(Header)
     temp = Header{n,1};
-    temp1 = temp(pos1{1,1}{n,1}:pos2{1,1}{n,1});
-    temp2 = temp(pos1{2,1}{n,1}:pos2{2,1}{n,1});
+    temp1 = temp(1:pos1{1,1}{n,1}-2);
+    temp2 = temp(pos1{2,1}{n,1}+5:pos2{2,1}{n,1});
     temp3 = temp(pos1{3,1}{n,1}+13:pos2{3,1}{n,1});
     
     if isempty(temp1)
         disp('missing transcript ID');
+    elseif strfind(temp1,'.')
+        temp1pos=strfind(temp1,'.');
+        temp1=temp1(1:temp1pos(1)-1);
     end
     if isempty(temp2)
         disp('missing gene ID');
+    elseif strfind(temp2,'.')
+        temp2pos=strfind(temp2,'.');
+        temp2=temp2(1:temp2pos(1)-1);
     end
     if isempty(temp3)
         disp('missing gene type');
+    elseif strfind(temp3,'.')
+        temp3pos=strfind(temp3,'.');
+        temp3=temp3(1:temp3pos(1)-1);
     end
     
     Header{n,1} = strcat(temp1, ':', temp2, ':', temp3);
@@ -55,7 +53,7 @@ if ~isempty(seqData)
     if params(1).verbose
         disp('  picking expressed sequences according to RNA-seq data');
     end
-    [Header, Sequence] = pickExpressedSeq(seqData, Header, Sequence, params);
+    [Header, Sequence] = pickExpressedSeq(seqData, Header, Sequence);
 end
 
 if ~isempty(trna)
@@ -89,8 +87,8 @@ ncrnaDb = [params(1).species '.ncrnaDb.fas'];
 % MatLab's use of blastlocal requires short entry names
 simpleHeader = Header;
 for n = 1:length(Header)
-    pos = regexp(Header{n,1}, params(1).keys, 'end');
-    simpleHeader{n,1} = Header{n,1}(1:pos);
+    pos = regexp(Header{n,1}, ':');
+    simpleHeader{n,1} = Header{n,1}(1:pos(1)-1);
 end
 if exist(ncrnaDb, 'file')
     delete([ncrnaDb '*']);
