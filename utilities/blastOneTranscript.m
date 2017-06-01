@@ -77,7 +77,9 @@ end
 %% Find out the probes that non-specifically bind 2nd PCR primers and other probes
 seqDelete = findSeqDelete(blastData);
 
-seqDelete = index(seqDelete);
+if ~isempty(seqDelete)
+    seqDelete = index(seqDelete);
+end
 
 fileCleanUp(filePathList);
 delete([OTDb1 '*']);
