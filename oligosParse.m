@@ -47,9 +47,7 @@ for n = 1:length(geneNames)
     end
 end
 index = unique(index','stable');
-% geneNames2 = geneNames;
-% nonspecificHits2 = nonspecificHits;
-% specificHits2 = specificHits;
+
 geneNames(index) = [];
 nonspecificHits(index) = [];
 specificHits(index) = [];

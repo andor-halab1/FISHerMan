@@ -47,7 +47,7 @@
   <!-- transcriptList parameters -->
   <!-- transcriptListParse.m -->
   <transcriptList>
-    <dir1>C:\FISHerMan\Db\Mouse.transcriptList.fas</dir1>
+    <dir1>C:\FISHerMan\Db\Mouse.transcriptList.MouseBrain500.fas</dir1>
     <length>40</length>
 	<number>24</number>
   </transcriptList>
@@ -136,7 +136,7 @@
   <!-- generateProbeList.m -->
   <probeList>
 	<number>48</number>
-	<dir1>C:\FISHerMan\Db\Mouse.STList.fas</dir1>
+	<dirST>C:\FISHerMan\Db\Mouse.STList.fas</dirST>
   </probeList>
   
 </parameters>

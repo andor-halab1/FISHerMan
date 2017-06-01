@@ -8,6 +8,7 @@ function seqDelete...
 %     'rRr','AGAGTGAGTAGTAGTGGAGT','rGr','GATGATGTAGTAGTAAGGGT',...
 %     'rBr','TGTGATGGAAGTTAGAGGGT','rIRr','GGAGTAGTTGGTTGTTAGGA');
 
+% probeHeader and OTHeader are one-segment Header
 index = ismember(probeHeader, OTAdapterHeader);
 temp = 1:length(probeHeader);
 index = temp(index);

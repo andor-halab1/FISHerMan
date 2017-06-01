@@ -33,7 +33,6 @@ gkey1=xmlParse(general, 'general', 'key1');
 gkey2=xmlParse(general, 'general', 'key2');
 gkey3=xmlParse(general, 'general', 'key3');
 gkey4=xmlParse(general, 'general', 'key4');
-gkey5=xmlParse(general, 'general', 'key5');
 
 %% Parse parameters for rnaSeq
 data=xmlParse(rnaSeq, 'rnaSeq', 'data');
@@ -208,10 +207,10 @@ params.arna = struct('species',species,...
 
 %% Parse parameters for probeList
 num=xmlParse(probeList, 'probeList', 'number');
-dir1=xmlParse(probeList, 'probeList', 'dir1');
+dirST=xmlParse(probeList, 'probeList', 'dirST');
 
 params.probeList = struct('species',species,...
     'verbose',str2double(verbose.getFirstChild.getData),...
     'number',str2double(num.getFirstChild.getData),...
-    'specialTranscripts',char(dir1.getFirstChild.getData));
+    'specialTranscripts',char(dirST.getFirstChild.getData));
 

@@ -1,6 +1,5 @@
 function [longHeader,longSequence]=transcriptListParse(transcriptList,cdnaHeader,cdnaSequence,...
     ncrnaHeader,ncrnaSequence,params)
-% transcriptList = 'C:\FISHerMan\transcriptList.fas';
 
 % params = struct('species','Mouse','verbose',1,...
 %     'dir1','C:\FISHerMan\Db\Mouse.transcriptList.fas',...
@@ -12,34 +11,26 @@ if params(1).verbose
     disp('  thresholding based on sequence length');
 end
 
-% use provided seqList as targets for designing FISH probes
+% use provided transcriptList as targets for designing FISH probes
 [targetHeader,~]=fastaread(transcriptList);
 targetHeader = targetHeader';
 
+totalHeader = vertcat(cdnaHeader,ncrnaHeader);
+totalSequence = vertcat(cdnaSequence,ncrnaSequence);
+[totalHeader, totalSequence] = pickExpressedSeq(targetHeader, totalHeader, totalSequence);
+
 longHeader = {};
 longSequence = {};
-for n = 1:length(cdnaSequence)
-    temp = cdnaHeader{n,1};
-    pos = regexp(temp, ':');
-    temp = temp(1:pos(1)-1);
-    if length(cdnaSequence{n,1}) >= (params(1).length*params(1).number) &&...
-            sum(ismember(targetHeader, temp))
-        longHeader{end+1} = cdnaHeader{n,1};
-        longSequence{end+1} = cdnaSequence{n,1};
+for n = 1:length(totalSequence)
+    if length(totalSequence{n,1}) >= (params(1).length*params(1).number)
+        if length(regexp(totalHeader{n,1},':')) >= 2
+            pos=regexp(totalHeader{n,1},':');
+            totalHeader{n,1}=totalHeader{n,1}(1:pos(2)-1);
+        end
+        longHeader{end+1,1} = totalHeader{n,1};
+        longSequence{end+1,1} = totalSequence{n,1};
     end
 end
-for n = 1:length(ncrnaSequence)
-    temp = ncrnaHeader{n,1};
-    pos = regexp(temp, ':');
-    temp = temp(1:pos(1)-1);
-    if length(ncrnaSequence{n,1}) >= (params(1).length*params(1).number) &&...
-            sum(ismember(targetHeader, temp))
-        longHeader{end+1} = ncrnaHeader{n,1}(1:pos(2)-1);
-        longSequence{end+1} = ncrnaSequence{n,1};
-    end
-end
-longHeader = longHeader';
-longSequence = longSequence';
 
 if params(1).verbose
     disp(['  ' num2str(length(longHeader)) ' transcripts have length longer than '...
@@ -57,16 +48,14 @@ for n = 1:length(longHeader)
     segN = floor(length(longSequence{n,1})/1000);
     probe = longSequence{n,1};
     for m = 1:segN
-        segHeader{end+1} = longHeader{n,1};
-        segSequence{end+1} = probe(1000*(m-1)+1:1000*m);
+        segHeader{end+1,1} = longHeader{n,1};
+        segSequence{end+1,1} = probe(1000*(m-1)+1:1000*m);
     end
     if length(probe) >= (1000*segN+30)
-        segHeader{end+1} = longHeader{n,1};
-        segSequence{end+1} = probe(1000*segN+1:end);
+        segHeader{end+1,1} = longHeader{n,1};
+        segSequence{end+1,1} = probe(1000*segN+1:end);
     end
 end
-segHeader = segHeader';
-segSequence = segSequence';
 
 if params(1).verbose
     disp('saving the target transcript fasta file');

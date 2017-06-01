@@ -90,10 +90,10 @@ for n = 1:length(data)
         [probeNumPos1, probeNumPos2] = regexp(probeName, '=\d*', 'start', 'end');
         probeNum = probeName(probeNumPos1+1:probeNumPos2);
         probeNum = uint32(str2double(probeNum));
-        seqDelete = [seqDelete probeNum];
+        seqDelete = [seqDelete;probeNum];
     end
 end
-seqDelete = seqDelete';
+seqDelete = unique(seqDelete);
 
 probeHeader(seqDelete)= [];
 probeSequence(seqDelete)= [];
