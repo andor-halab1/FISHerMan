@@ -1,11 +1,7 @@
 function probeList=generateProbeList(adapterList,probeHeader,probeSequence,params)
 
-% if length(varargin) >= 1
-%     params = varargin{1};
-% else
-%     params = struct('species','Mouse','verbose',1,'keys','ENS\w*T\d*',...
-%         'number',48,'specialTranscripts','C:\FISHerMan\Db\Mouse.STList.fas');
-% end
+% params = struct('species','Mouse','verbose',1,'number',48,...
+%     'specialTranscripts','C:\FISHerMan\Db\Mouse.STList.fas');
 
 %% Remove transcripts without enough probes
 if params(1).verbose
@@ -13,10 +9,10 @@ if params(1).verbose
     disp('  removing transcripts without enough probes');
 end
 
-pos = regexp(probeHeader, params(1).keys, 'end');
+pos = regexp(probeHeader, ':');
 trimHeader = {};
 for n = 1:length(probeHeader)
-    trimHeader{end+1} = probeHeader{n,1}(1:pos{n,1});
+    trimHeader{end+1} = probeHeader{n,1}(1:pos{n,1}(1)-1);
 end
 trimHeader = trimHeader';
 uniqueHeader = unique(trimHeader, 'stable');
@@ -65,7 +61,7 @@ end
 fastawrite(probeList,probeHeader,probeSequence);
 
 %% Check how many transcripts are left after this step of screening
-[geneNumLeft,geneNumDelete]=checkTranscriptsLeft(adapterList,probeHeader,params);
+[geneNumLeft,geneNumDelete]=checkTranscriptsLeft(adapterList,probeHeader);
 if params(1).verbose
     disp([num2str(geneNumDelete) ' out of ' num2str(geneNumLeft+geneNumDelete)...
         ' FISH escaped FISHerMan''s net']);

@@ -1,16 +1,12 @@
 function [probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore]...
     =blastOtherSteps(adapterList,probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore,params)
 
-% if length(varargin) >= 1
-%     params = varargin{1};
-% else
-%     params = struct('species','Mouse','verbose',1,'keys','ENS\w*T\d*',...
-%         'thres',22,'querySize',50,...
-%         'blastArgs1','-S 2','blastArgs2','-S 3',...
-%         'grr','CCGCAACATCCAGCATCGTG','T7r','CCCTATAGTGAGTCGTATTA',...
-%         'rRr','AGAGTGAGTAGTAGTGGAGT','rGr','GATGATGTAGTAGTAAGGGT',...
-%         'rBr','TGTGATGGAAGTTAGAGGGT','rIRr','GGAGTAGTTGGTTGTTAGGA');
-% end
+% params = struct('species','Mouse','verbose',1,'keys',...
+%     'thres',22,'querySize',50,...
+%     'blastArgs1','-S 2','blastArgs2','-S 3',...
+%     'grr','CCGCAACATCCAGCATCGTG','T7r','CCCTATAGTGAGTCGTATTA',...
+%     'rRr','AGAGTGAGTAGTAGTGGAGT','rGr','GATGATGTAGTAGTAAGGGT',...
+%     'rBr','TGTGATGGAAGTTAGAGGGT','rIRr','GGAGTAGTTGGTTGTTAGGA');
 
 if params(1).verbose
     disp('removing probes that non-specifically bind to 2nd PCR primers and other probes');
@@ -22,8 +18,8 @@ adapterSequence = adapterSequence';
 
 simpleHeader = probeHeader;
 for n = 1:length(probeHeader)
-    pos = regexp(probeHeader{n,1}, params(1).keys, 'end');
-    simpleHeader{n,1} = probeHeader{n,1}(1:pos);
+    pos = regexp(probeHeader{n,1}, ':');
+    simpleHeader{n,1} = probeHeader{n,1}(1:pos(1)-1);
 end
 
 seqDelete = [];
@@ -42,7 +38,7 @@ probeSequence3Seg(seqDelete)= [];
 probeSequenceCore(seqDelete)= [];
 
 %% Check how many transcripts are left after this step of screening
-[geneNumLeft,geneNumDelete]=checkTranscriptsLeft(adapterList,probeHeader,params);
+[geneNumLeft,geneNumDelete]=checkTranscriptsLeft(adapterList,probeHeader);
 if params(1).verbose
     disp([num2str(geneNumDelete) ' out of ' num2str(geneNumLeft+geneNumDelete)...
         ' FISH escaped FISHerMan''s net']);

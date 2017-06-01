@@ -1,14 +1,10 @@
 function seqData = averageRNASeq(seqData1,seqData2,params)
 
-% seqData1 = 'mouse_frontal_cortex_mRNASeq_ENCFF653BKJ.xlsx';
-% seqData2 = 'mouse_frontal_cortex_mRNASeq_ENCFF703SOK.xlsx';
-
-% if length(varargin) >= 1
-%     params = varargin{1};
-% else
-%     params = struct('species','Mouse','verbose',1,...
-%         'keys',{'ENS\w*T\d*','ENS\w*G\d*'},'thres',0.1);
-% end
+% params = struct('species','Mouse','verbose',1,'data',2,...
+%     'dir1','C:\FISHerMan\Db\mouse_frontal_cortex_mRNASeq_ENCFF653BKJ.xlsx',...
+%     'dir2','C:\FISHerMan\Db\mouse_frontal_cortex_mRNASeq_ENCFF703SOK.xlsx',...
+%     'mRNA',1,'keys',{'ENS\w*T\d*','ENS\w*G\d*'},...
+%     'thres',0.1);
 
 seqData1 = readRNASeq(seqData1,params);
 seqData2 = readRNASeq(seqData2,params);

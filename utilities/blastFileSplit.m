@@ -8,7 +8,11 @@ filePathList = {};
 % MatLab's use of blastlocal requires short entry names
 for n = 1:length(Header)
     pos = regexp(Header{n,1}, ':');
-    Header{n,1} = Header{n,1}(1:pos(1)-1);
+    if ~isempty(pos)
+        Header{n,1} = Header{n,1}(1:pos(1)-1);
+    else
+        Header{n,1} = Header{n,1};
+    end
     Header{n,1} = strcat(Header{n,1}, '=', num2str(n));
 end
 

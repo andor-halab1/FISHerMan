@@ -5,13 +5,9 @@
 function [Header,Sequence,nonSequence,nonSequence2]...
     =blastAbundantRNA(adapterList,Header,Sequence,nonSequence,nonSequence2,params)
 
-% if length(varargin) >= 1
-%     params = varargin{1};
-% else
-%     params = struct('species','Mouse','verbose',1,...
-%         'seqNum',1000,'thres',30,'querySize',73,'DbSize',200000,...
-%         'blastArgs','-S 2','parallel', 0);
-% end
+% params = struct('species','Mouse','verbose',1,...
+%     'seqNum',1000,'thres',30,'querySize',73,'DbSize',200000,...
+%     'blastArgs','-S 2','parallel', 0);
 
 if isempty(nonSequence)
     nonSequence = Sequence;
@@ -30,7 +26,7 @@ if params(1).verbose
     disp('  spliting fasta files for parallel computing');
 end
 
-filePathList = blastFileSplit(Header, Sequence, params(1).seqNum, params);
+filePathList = blastFileSplit(Header, Sequence, params);
 fileNum = length(filePathList);
 
 %% Blast mouse oligos against abundant rna
@@ -47,13 +43,8 @@ if params(1).parallel
     parfor k = 1:fileNum
         if verbose
             disp(['  blasting temporary file no. ' num2str(k)]);
-            startTime(k) = tic;
         end
         blastData{k,1} = blastOp(filePathList{k}, DbPath, blastArgs);
-        if verbose
-            totalTime(k) = toc(startTime(k));
-            disp(['  elapsed time is ' num2str(totalTime(k)) ' seconds']);
-        end
     end
     delete(poolobj);
 else
@@ -80,7 +71,7 @@ seqDelete = [];
 for n = 1:length(data)
     flag = 0;
     for m = 1:length(data(n).Hits)
-        if ~strfind(data(n).Query,data(n).Hits(m).Name)
+        if isempty(strfind(data(n).Query,data(n).Hits(m).Name))
             flag = 1;
         end
     end
@@ -96,7 +87,7 @@ nonSequence(seqDelete)= [];
 nonSequence2(seqDelete)= [];
 
 %% Check how many transcripts are left after this step of screening
-[geneNumLeft,geneNumDelete]=checkTranscriptsLeft(adapterList,Header,params);
+[geneNumLeft,geneNumDelete]=checkTranscriptsLeft(adapterList,Header);
 if params(1).verbose
     disp([num2str(geneNumDelete) ' out of ' num2str(geneNumLeft+geneNumDelete)...
         ' FISH escaped FISHerMan''s net']);

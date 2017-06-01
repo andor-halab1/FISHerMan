@@ -43,13 +43,8 @@ if params(1).parallel
     parfor k = 1:fileNum
         if verbose
             disp(['  blasting temporary file no. ' num2str(k)]);
-%             startTime(k) = tic;
         end
         blastData{k,1} = blastOp(filePathList{k}, DbPath, blastArgs);
-%         if verbose
-%             totalTime(k) = toc(startTime(k));
-%             disp(['  elapsed time is ' num2str(totalTime(k)) ' seconds']);
-%         end
     end
     delete(poolobj);
 else

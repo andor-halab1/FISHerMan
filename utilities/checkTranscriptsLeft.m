@@ -1,10 +1,6 @@
-function [geneNumLeft,geneNumDelete]=checkTranscriptsLeft(adapterList,probeHeader,params)
+function [geneNumLeft,geneNumDelete]=checkTranscriptsLeft(adapterList,probeHeader)
 
-% if length(varargin) >= 1
-%     params = varargin{1};
-% else
-%     params = struct('species','Mouse','verbose',1,'keys','ENS\w*T\d*');
-% end
+% params = struct('species','Mouse','verbose',1);
 
 [adapterHeader, adapterSequence] = fastaread(adapterList);
 adapterHeader = adapterHeader';
@@ -13,14 +9,14 @@ geneNumTotal = length(adapterHeader);
 
 simpleHeader = probeHeader;
 for n = 1:length(probeHeader)
-    pos = regexp(probeHeader{n,1}, params(1).keys, 'end');
-    simpleHeader{n,1} = probeHeader{n,1}(1:pos);
+    pos = regexp(probeHeader{n,1}, ':');
+    simpleHeader{n,1} = probeHeader{n,1}(1:pos(1)-1);
 end
 uniqueHeader = unique(simpleHeader,'stable');
 geneNumLeft = length(uniqueHeader);
 geneNumDelete = geneNumTotal-geneNumLeft;
 
-[adapterHeader,adapterSequence] = pickExpressedSeq(uniqueHeader,adapterHeader,adapterSequence,params);
+[adapterHeader,adapterSequence] = pickExpressedSeq(uniqueHeader,adapterHeader,adapterSequence);
 if exist(adapterList, 'file')
     delete(adapterList);
 end

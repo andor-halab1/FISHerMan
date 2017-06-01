@@ -1,15 +1,11 @@
 function [adapterList,probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore]...
     =appendAdapters(adapterList,oligos,params)
 
-% if length(varargin) >= 1
-%     params = varargin{1};
-% else
-%     params = struct('species','Mouse','verbose',1,'keys','ENS\w*T\d*',...
-%         'gf','GGAATCGTTGCGGGTGTCCT','grr','CCGCAACATCCAGCATCGTG',...
-%         'T7r','CCCTATAGTGAGTCGTATTA',...
-%         'rRr','AGAGTGAGTAGTAGTGGAGT','rGr','GATGATGTAGTAGTAAGGGT',...
-%         'rBr','TGTGATGGAAGTTAGAGGGT','rIRr','GGAGTAGTTGGTTGTTAGGA');
-% end
+% params = struct('species','Mouse','verbose',1,...
+%     'gf','GGAATCGTTGCGGGTGTCCT','grr','CCGCAACATCCAGCATCGTG',...
+%     'T7r','CCCTATAGTGAGTCGTATTA',...
+%     'rRr','AGAGTGAGTAGTAGTGGAGT','rGr','GATGATGTAGTAGTAAGGGT',...
+%     'rBr','TGTGATGGAAGTTAGAGGGT','rIRr','GGAGTAGTTGGTTGTTAGGA');
 
 if params(1).verbose
     disp('concatenating oligos with adapters');
@@ -19,10 +15,10 @@ end
 Header = Header';
 Sequence = Sequence';
 
-pos = regexp(Header, params(1).keys, 'end');
+pos = regexp(Header, ':');
 trimmedHeader = Header;
 for n = 1:length(Header)
-    trimmedHeader{n,1} = Header{n,1}(1:pos{n,1});
+    trimmedHeader{n,1} = Header{n,1}(1:pos{n,1}(1)-1);
 end
 uniqueHeader = unique(trimmedHeader, 'stable');
 
@@ -36,17 +32,6 @@ if exist(adapterList, 'file')
     delete(adapterList);
 end
 fastawrite(adapterList, adapterHeader, adapterSequence);
-
-% adapterRSequence = adapterSequence;
-% adapterGSequence = adapterSequence;
-% adapterBSequence = adapterSequence;
-% adapterIRSequence = adapterSequence;
-% for n = 1:length(adapterSequence)
-%     adapterRSequence{n,1} = strcat(params.rRr, adapterSequence{n,1});
-%     adapterGSequence{n,1} = strcat(params.rGr, adapterSequence{n,1});
-%     adapterBSequence{n,1} = strcat(params.rBr, adapterSequence{n,1});
-%     adapterIRSequence{n,1} = strcat(params.rIRr, adapterSequence{n,1});
-% end
 
 probeHeader = {};
 probeSequence = {};

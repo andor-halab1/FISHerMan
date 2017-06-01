@@ -1,17 +1,10 @@
 function [probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore]...
     =blast1stPCR(adapterList,probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore,params)
 
-% if length(varargin) >= 1
-%     params = varargin{1};
-% else
-%     params = struct('species','Mouse','verbose',1,'keys','ENS\w*T\d*',...
-%         'thres',22,'querySize',20,'seqNum',1000,...
-%         'blastArgs','-S 3','parallel', 0,...
-%         'gf','GGAATCGTTGCGGGTGTCCT','grr','CCGCAACATCCAGCATCGTG',...
-%         'T7r','CCCTATAGTGAGTCGTATTA',...
-%         'rRr','AGAGTGAGTAGTAGTGGAGT','rGr','GATGATGTAGTAGTAAGGGT',...
-%         'rBr','TGTGATGGAAGTTAGAGGGT','rIRr','GGAGTAGTTGGTTGTTAGGA');
-% end
+% params = struct('species','Mouse','verbose',1,...
+%     'thres',22,'querySize',20,'seqNum',1000,...
+%     'blastArgs','-S 3','parallel', 0,...
+%     'gf','GGAATCGTTGCGGGTGTCCT','grr','CCGCAACATCCAGCATCGTG');
 
 if params(1).verbose
     disp('removing probes that non-specifically bind to primers in the 1st PCR step');
@@ -26,8 +19,8 @@ probesDb = [params(1).species '.probesDb.fas'];
 % MatLab's use of blastlocal requires short entry names
 simpleHeader = probeHeader;
 for n = 1:length(probeHeader)
-    pos = regexp(probeHeader{n,1}, params(1).keys, 'end');
-    simpleHeader{n,1} = strcat(probeHeader{n,1}(1:pos),'=',num2str(n));
+    pos = regexp(probeHeader{n,1}, ':');
+    simpleHeader{n,1} = strcat(probeHeader{n,1}(1:pos(1)-1),'=',num2str(n));
 end
 if exist(probesDb, 'file')
     delete([probesDb '*']);
@@ -49,7 +42,7 @@ adapterSequence{end+1,1} = params(1).gf;
 adapterHeader{end+1,1} = 'ENSPRIMERT01';
 adapterSequence{end+1,1} = params(1).grr;
 
-filePathList = blastFileSplit(adapterHeader, adapterSequence, params(1).seqNum, params);
+filePathList = blastFileSplit(adapterHeader, adapterSequence, params);
 fileNum = length(filePathList);
 
 %% Blast primers against probes
@@ -66,13 +59,8 @@ if params(1).parallel
     parfor k = 1:fileNum
         if verbose
             disp(['  blasting temporary file no. ' num2str(k)]);
-            startTime(k) = tic;
         end
         blastData{k,1} = blastOp(filePathList{k}, DbPath, blastArgs);
-        if verbose
-            totalTime(k) = toc(startTime(k));
-            disp(['  elapsed time is ' num2str(totalTime(k)) ' seconds']);
-        end
     end
     delete(poolobj);
 else
@@ -113,7 +101,7 @@ probeSequence3Seg(seqDelete)= [];
 probeSequenceCore(seqDelete)= [];
 
 %% Check how many transcripts are left after this step of screening
-[geneNumLeft,geneNumDelete]=checkTranscriptsLeft(adapterList,probeHeader,params);
+[geneNumLeft,geneNumDelete]=checkTranscriptsLeft(adapterList,probeHeader);
 if params(1).verbose
     disp([num2str(geneNumDelete) ' out of ' num2str(geneNumLeft+geneNumDelete)...
         ' FISH escaped FISHerMan''s net']);
