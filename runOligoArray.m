@@ -1,4 +1,4 @@
-function runOligoArray(varargin)
+function runOligoArray(species,varargin)
 
 if length(varargin) >= 1
     params = varargin{1};
@@ -11,6 +11,7 @@ else
         'oligoArrayPath','C:\OligoArray\','oligoArrayExe','C:\OligoArray\OligoArray2.jar',...
         'blastDbPath','C:\OligoArray\BlastDb\','numParallel',10);
 end
+params(1).species=species;
 
 %% Set up files for OligoArray; Not decided whether ncrna should be included in the database
 if params.verbose

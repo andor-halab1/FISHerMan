@@ -52,7 +52,7 @@ end
     =transcriptListParse(params.transcriptList(1).dir1,cdnaHeader,cdnaSequence,ncrnaHeader,ncrnaSequence,params.transcriptList);
 
 %% Run OligoArray to generate a raw list of oligos
-runOligoArray;
+runOligoArray(species);
 oligoList=oligosParse(params.oligos);
 
 %% Append pre-designed adapters to the raw list of oligos

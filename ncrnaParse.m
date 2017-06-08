@@ -56,7 +56,7 @@ if ~isempty(seqData)
     [Header, Sequence] = pickExpressedSeq(seqData, Header, Sequence);
 end
 
-if ~isempty(trna)
+if params(1).tRNA~=0
     if params(1).verbose
         disp('  appending additional tRNA sequences to ncrna data file');
     end
