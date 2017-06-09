@@ -90,7 +90,7 @@
   <!-- adapters parameters -->
   <!-- appendAdapters.m -->
   <adapters>
-    <dir1>C:\FISHerMan\Db\Mouse.alladapters.fas</dir1>
+    <dir1>C:\FISHerMan\Db\Yeast.alladapters.fas</dir1>
 	<gf>GGAATCGTTGCGGGTGTCCT</gf>
 	<grr>CCGCAACATCCAGCATCGTG</grr>
   </adapters>
@@ -137,7 +137,7 @@
   <!-- generateProbeList.m -->
   <probeList>
 	<number>40</number>
-	<dirST>C:\FISHerMan\Db\Mouse.STList.fas</dirST>
+	<dirST>C:\FISHerMan\Db\Yeast.STList.fas</dirST>
   </probeList>
   
 </parameters>
