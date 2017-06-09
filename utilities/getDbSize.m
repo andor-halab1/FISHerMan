@@ -8,18 +8,24 @@ else
     params = struct('thres',40,'querySize',20,'DbSize',10^8,'blastArgs','-S 1');
 end
 
-eValue = bitScore2eValue(params.thres, params.querySize, params.DbSize);
-
-DbPath = testDb;
-blastArgs = [params.blastArgs ' -e ' num2str(eValue)];
-
 [Header, Sequence] = fastaread(testDb);
 Header = Header';
 Sequence = Sequence';
 
-tempHeader{1,1} = Header{1,1};
-tempSequence{1,1} = Sequence{1,1}(1:20);
+for n = 1:length(Header)
+    if length(Sequence{n,1}) >= 20
+        break;
+    end
+end
+
+tempHeader{1,1} = Header{n,1};
+tempSequence{1,1} = Sequence{n,1}(1:20);
 fastawrite('testDb.fas',tempHeader,tempSequence);
+
+eValue = bitScore2eValue(params.thres, params.querySize, params.DbSize);
+
+DbPath = testDb;
+blastArgs = [params.blastArgs ' -e ' num2str(eValue)];
 
 data = blastOp('testDb.fas', DbPath, blastArgs);
 

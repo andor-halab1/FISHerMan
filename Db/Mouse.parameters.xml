@@ -23,13 +23,13 @@
   <!-- cdna parameters -->
   <!-- cdnaParse.m -->
   <cdna>
-    <dir1>C:\FISHerMan\Db\Mouse38.cdna.fa</dir1>
+    <dir1>C:\FISHerMan\Db\Mouse.cdna.fa</dir1>
   </cdna>
   
   <!-- ncrna parameters -->
   <!-- ncrnaParse.m -->
   <ncrna>
-    <dir1>C:\FISHerMan\Db\Mouse38.ncrna.fa</dir1>
+    <dir1>C:\FISHerMan\Db\Mouse.ncrna.fa</dir1>
 	<tRNA>1</tRNA>
 	<dirT>C:\FISHerMan\Db\Mouse.trna.fas</dirT>
   </ncrna>

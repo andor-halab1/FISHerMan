@@ -76,9 +76,9 @@
   <!-- oligos parameters -->
   <!-- oligosParse.m -->
   <oligos>
-	<number>48</number>
+	<number>40</number>
 	<seqNum>1000</seqNum>
-	<thres>28</thres>
+	<thres>30</thres>
 	<querySize>30</querySize>
 	<DbSize>200000</DbSize>
     <blastArgs>-S 2</blastArgs>
@@ -116,10 +116,10 @@
 	<blastArgs2>-S 3</blastArgs2>
 	<grr>CCGCAACATCCAGCATCGTG</grr>
 	<T7r>CCCTATAGTGAGTCGTATTA</T7r>
-	<rRr>AGAGTGAGTAGTAGTGGAGT</rRr>
-	<rGr>GATGATGTAGTAGTAAGGGT</rGr>
-    <rBr>TGTGATGGAAGTTAGAGGGT</rBr>
-	<rIRr>GGAGTAGTTGGTTGTTAGGA</rIRr>
+	<rRr>TGTGGAGGGATTGAAGGATA</rRr>
+	<rGr>GGGAGAATGAGGTGTAATGT</rGr>
+    <rBr>GATGATGTAGTAGTAAGGGT</rBr>
+	<rIRr>AGGAGGAGGGTAATGATAGA</rIRr>
   </otherSteps>
   
   <!-- arna parameters -->
@@ -136,7 +136,7 @@
   <!-- probeList parameters -->
   <!-- generateProbeList.m -->
   <probeList>
-	<number>48</number>
+	<number>40</number>
 	<dirST>C:\FISHerMan\Db\Mouse.STList.fas</dirST>
   </probeList>
   

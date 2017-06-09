@@ -1,19 +1,19 @@
->readout_9
+>readout09
 TATCCTTCAATCCCTCCACA
->readout_9r
+>readout09_reverse
 TGTGGAGGGATTGAAGGATA
 
->readout_10
+>readout10
 ACATTACACCTCATTCTCCC
->readout_10r
+>readout10_reverse
 GGGAGAATGAGGTGTAATGT
 
->readout_13
+>readout13
 ACCCTTACTACTACATCATC
->readout_13r
+>readout13_reverse
 GATGATGTAGTAGTAAGGGT
 
->readout_15
+>readout15
 TCTATCATTACCCTCCTCCT
->readout_15r
+>readout15_reverse
 AGGAGGAGGGTAATGATAGA
