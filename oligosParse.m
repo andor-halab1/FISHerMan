@@ -10,14 +10,15 @@ if params(1).verbose
 end
 
 oligos = [params(1).species '.tempoligos.txt'];
-if ~exist(oligos, 'file')
+if exist(oligos, 'file')
+    fid = fopen(oligos,'r');
+    fmt = '%s %f %f %f %f %f %f %s %s %s %*[^\n]';
+    temp = textscan(fid,fmt,'CollectOutput',true,'delimiter','\t','TreatAsEmpty','NA');
+    fclose(fid);
+else
     warning('missing important files from OligoArray');
+    return;
 end
-
-fid = fopen(oligos,'r');
-fmt = '%s %f %f %f %f %f %f %s %s %s %*[^\n]';
-temp = textscan(fid,fmt,'CollectOutput',true,'delimiter','\t','TreatAsEmpty','NA');
-fclose(fid);
 
 %% Remove non-specific oligos
 if params(1).verbose
@@ -108,7 +109,7 @@ if params(1).verbose
     disp('saving the oligo fasta file');
 end
 
-delete(oligos);
+% delete(oligos);
 oligos = [params(1).species '.oligos.fas'];
 if exist(oligos, 'file')
     delete(oligos);
