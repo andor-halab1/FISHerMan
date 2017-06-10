@@ -2494,7 +2494,7 @@
   transcript YIL041W has less than 40 probes
   transcript YHL011C has less than 40 probes
   3632
-    transcript YCR061W has less than 40 probes
+  transcript YCR061W has less than 40 probes
   transcript YGR266W has less than 40 probes
   transcript YDR258C has less than 40 probes
   transcript YLR006C has less than 40 probes
