@@ -35,7 +35,9 @@ for n = 1:length(geneNames)
     end
     
     pos = regexp(geneNames{n,1}, ':');
-    geneName=geneNames{n,1}(pos(1)+1:end);
+    if ~isempty(pos)
+        geneName=geneNames{n,1}(pos(1)+1:end);
+    end
     
     flag = 0;
     if length(regexp(nonspecificHits{n,1}, geneName)) < ...
