@@ -25,7 +25,7 @@ geneNum = length(uniqueHeader);
 adapterHeader = uniqueHeader;
 adapterSequence = adapterSequence(1:geneNum)';
 
-adapterList = [params(1).species '.adapters.fas'];
+adapterList = [params(1).species '.adapters.txt'];
 if exist(adapterList, 'file')
     delete(adapterList);
 end

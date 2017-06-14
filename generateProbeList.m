@@ -54,7 +54,7 @@ probeSequence(indexTotal) = [];
 % indexTotal = randperm(length(probeHeader))';
 % probeHeader = probeHeader(indexTotal);
 % probeSequence = probeSequence(indexTotal);
-probeList = [params(1).species '.probes.nr.fas'];
+probeList = [params(1).species '.probes.nr.txt'];
 if exist(probeList, 'file')
     delete(probeList);
 end

@@ -31,7 +31,7 @@
   <ncrna>
     <dir1>C:\FISHerMan\Db\Yeast.ncrna.fa</dir1>
 	<tRNA>0</tRNA>
-	<dirT>C:\FISHerMan\Db\Mouse.trna.fas</dirT>
+	<dirT>C:\FISHerMan\Db\Mouse.trna.txt</dirT>
   </ncrna>
   
   <!-- abundantrna parameters -->
@@ -47,22 +47,23 @@
   <!-- transcriptList parameters -->
   <!-- transcriptListParse.m -->
   <transcriptList>
-    <dir1>C:\FISHerMan\Db\Yeast.transcriptList.fas</dir1>
+    <dir1>C:\FISHerMan\Db\Yeast.transcriptList.txt</dir1>
     <length>40</length>
 	<number>24</number>
   </transcriptList>
   
   <!-- OligoArray parameters -->
   <!-- runOligoArray.m -->
+  <!--
   <OligoArray>
     <GbMem>16</GbMem>
 	<maxFragment>1000</maxFragment>
-	<crosshybeT>72</crosshybeT>
-	<crosshybeT>72.0</crosshybeT>
-	<minTm>70</minTm>
-	<maxTm>90</maxTm>
-	<minPercentGC>40.0</minPercentGC>
-	<maxPercentGC>65.0</maxPercentGC>
+	<crosshybeT>75</crosshybeT>
+	<crosshybeT>75.0</crosshybeT>
+	<minTm>75</minTm>
+	<maxTm>87</maxTm>
+	<minPercentGC>30.0</minPercentGC>
+	<maxPercentGC>50.0</maxPercentGC>
 	<probeLength>30</probeLength>
 	<probeLengthMax>30</probeLengthMax>
 	<minProbeDist>40</minProbeDist>
@@ -72,25 +73,25 @@
     <blastDbPath>C:\OligoArray\BlastDb\</blastDbPath>
 	<numParallel>10</numParallel>
   </OligoArray>
+  -->
   
   <!-- oligos parameters -->
   <!-- oligosParse.m -->
   <oligos>
-	<number>40</number>
+	<number>48</number>
 	<seqNum>1000</seqNum>
 	<thres>30</thres>
 	<querySize>30</querySize>
 	<DbSize>200000</DbSize>
     <blastArgs>-S 2</blastArgs>
 	<parallel>0</parallel>
-	<dirST>C:\FISHerMan\Db\Yeast.STList.fas</dirST>
+	<dirST>C:\FISHerMan\Db\Yeast.STList.txt</dirST>
   </oligos>
   
-  <!-- reviewed until here -->
   <!-- adapters parameters -->
   <!-- appendAdapters.m -->
   <adapters>
-    <dir1>C:\FISHerMan\Db\Yeast.alladapters.fas</dir1>
+    <dir1>C:\FISHerMan\Db\Yeast.alladapters.txt</dir1>
 	<gf>GGAATCGTTGCGGGTGTCCT</gf>
 	<grr>CCGCAACATCCAGCATCGTG</grr>
   </adapters>
@@ -136,8 +137,8 @@
   <!-- probeList parameters -->
   <!-- generateProbeList.m -->
   <probeList>
-	<number>40</number>
-	<dirST>C:\FISHerMan\Db\Yeast.STList.fas</dirST>
+	<number>48</number>
+	<dirST>C:\FISHerMan\Db\Yeast.STList.txt</dirST>
   </probeList>
   
 </parameters>

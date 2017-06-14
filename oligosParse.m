@@ -112,7 +112,7 @@ if params(1).verbose
 end
 
 % delete(oligos);
-oligos = [params(1).species '.oligos.fas'];
+oligos = [params(1).species '.oligos.txt'];
 if exist(oligos, 'file')
     delete(oligos);
 end

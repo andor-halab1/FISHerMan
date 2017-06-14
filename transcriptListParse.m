@@ -61,7 +61,7 @@ if params(1).verbose
     disp('saving the target transcript fasta file');
 end
 
-transcriptList = [params(1).species '.target1kb.fas'];
+transcriptList = [params(1).species '.target1kb.txt'];
 if exist(transcriptList, 'file')
     delete(transcriptList);
 end

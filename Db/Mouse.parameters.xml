@@ -31,7 +31,7 @@
   <ncrna>
     <dir1>C:\FISHerMan\Db\Mouse.ncrna.fa</dir1>
 	<tRNA>1</tRNA>
-	<dirT>C:\FISHerMan\Db\Mouse.trna.fas</dirT>
+	<dirT>C:\FISHerMan\Db\Mouse.trna.txt</dirT>
   </ncrna>
   
   <!-- abundantrna parameters -->
@@ -47,7 +47,7 @@
   <!-- transcriptList parameters -->
   <!-- transcriptListParse.m -->
   <transcriptList>
-    <dir1>C:\FISHerMan\Db\Mouse.transcriptList.MouseBrain500.fas</dir1>
+    <dir1>C:\FISHerMan\Db\Mouse.transcriptList.MouseBrain500.txt</dir1>
     <length>40</length>
 	<number>24</number>
   </transcriptList>
@@ -83,13 +83,13 @@
 	<DbSize>200000</DbSize>
     <blastArgs>-S 2</blastArgs>
 	<parallel>0</parallel>
-	<dirST>C:\FISHerMan\Db\Mouse.STList.fas</dirST>
+	<dirST>C:\FISHerMan\Db\Mouse.STList.txt</dirST>
   </oligos>
   
   <!-- adapters parameters -->
   <!-- appendAdapters.m -->
   <adapters>
-    <dir1>C:\FISHerMan\Db\Mouse.alladapters.fas</dir1>
+    <dir1>C:\FISHerMan\Db\Mouse.alladapters.txt</dir1>
 	<gf>GGAATCGTTGCGGGTGTCCT</gf>
 	<grr>CCGCAACATCCAGCATCGTG</grr>
   </adapters>
@@ -136,7 +136,7 @@
   <!-- generateProbeList.m -->
   <probeList>
 	<number>48</number>
-	<dirST>C:\FISHerMan\Db\Mouse.STList.fas</dirST>
+	<dirST>C:\FISHerMan\Db\Mouse.STList.txt</dirST>
   </probeList>
   
 </parameters>
