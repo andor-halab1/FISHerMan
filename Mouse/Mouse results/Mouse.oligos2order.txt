@@ -31,5 +31,16 @@
 11) readout_m4r-gsf primer (for GAPDH):
 5'-TGTGATGGAAGTTAGAGGGTACAATACACTGGTCACGGTT-3'
 
+12) gene-specific forward primer (for SYT1):
+5'-GTACTGCGCGTGAGGTTCAC-3'
+
+13) gene-specific forward primer (for LONRF2):
+5'-CGTGTCCGAGTATGCTCTAG-3'
+
+14) readout_m3r-gsf primer (for SYT1):
+5'-AGAGTGAGTAGTAGTGGAGTGTACTGCGCGTGAGGTTCAC-3'
+
+15) readout_m4r-gsf primer (for LONRF2):
+5'-TGTGATGGAAGTTAGAGGGTCGTGTCCGAGTATGCTCTAG-3'
 
 
