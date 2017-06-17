@@ -39,13 +39,8 @@ for n = 1:length(geneNames)
         geneName=geneNames{n,1}(pos(1)+1:end);
     end
     
-    flag = 0;
     if length(regexp(nonspecificHits{n,1}, geneName)) < ...
             length(regexp(nonspecificHits{n,1}, ':'))
-        flag = 1;
-    end
-    
-    if flag == 1
         index = [index n];
     end
 end
@@ -75,9 +70,8 @@ end
 pos = regexp(geneNames, ':');
 trimNames = {};
 for n = 1:length(geneNames)
-    trimNames{end+1} = geneNames{n,1}(1:pos{n,1}(1)-1);
+    trimNames{end+1,1} = geneNames{n,1}(1:pos{n,1}(1)-1);
 end
-trimNames = trimNames';
 uniqueNames = unique(trimNames, 'stable');
 
 indexTotal = zeros(length(trimNames),1);
