@@ -1,5 +1,5 @@
-function [longHeader,longSequence]=transcriptListParse(transcriptList,cdnaHeader,cdnaSequence,...
-    ncrnaHeader,ncrnaSequence,params)
+function [longHeader,longSequence]...
+    =transcriptListParse(transcriptList,cdnaHeader,cdnaSequence,ncrnaHeader,ncrnaSequence,params)
 
 % params = struct('species','Mouse','verbose',1,...
 %     'dir1','C:\FISHerMan\Db\Mouse.transcriptList.fas',...
@@ -12,6 +12,7 @@ if params(1).verbose
 end
 
 % use provided transcriptList as targets for designing FISH probes
+% targetHeader are one-segment Header
 [targetHeader,~]=fastaread(transcriptList);
 targetHeader = targetHeader';
 
@@ -23,8 +24,9 @@ longHeader = {};
 longSequence = {};
 for n = 1:length(totalSequence)
     if length(totalSequence{n,1}) >= (params(1).length*params(1).number)
-        if length(regexp(totalHeader{n,1},':')) >= 2
-            pos=regexp(totalHeader{n,1},':');
+        % this is to make sure longHeader are two-segment Header
+        pos=regexp(totalHeader{n,1},':');
+        if length(pos) >= 2
             totalHeader{n,1}=totalHeader{n,1}(1:pos(2)-1);
         end
         longHeader{end+1,1} = totalHeader{n,1};

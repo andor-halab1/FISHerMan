@@ -27,12 +27,14 @@ for n = 1:length(Header)
     
     if isempty(temp1)
         disp('missing transcript ID');
+        quit;
     elseif strfind(temp1,'.')
         temp1pos=strfind(temp1,'.');
         temp1=temp1(1:temp1pos(1)-1);
     end
     if isempty(temp2)
         disp('missing gene ID');
+        quit;
     elseif strfind(temp2,'.')
         temp2pos=strfind(temp2,'.');
         temp2=temp2(1:temp2pos(1)-1);

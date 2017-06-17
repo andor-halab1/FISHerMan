@@ -19,7 +19,11 @@ seqData2 = seqData2(index2,:);
 
 seqData = seqData1;
 for n = 1:length(seqData)
-    seqData{n,3} = (seqData1{n,3}+seqData2{n,3})/2;
+    if strcmp(seqData1{n,1},seqData2{n,1})
+        seqData{n,3} = (seqData1{n,3}+seqData2{n,3})/2;
+    else
+        warning('transcript ID not matched');
+    end
 end
 
 FPKM = cell2mat(seqData(:,3));

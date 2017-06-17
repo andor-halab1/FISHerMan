@@ -2,7 +2,7 @@ function [Header,Sequence]=ncrnaParse(ncrna,seqData,trna,params)
 
 % params = struct('species','Mouse','verbose',1,...
 %     'dir1','C:\FISHerMan\Db\Mouse38.ncrna.fa',...
-%     'tRNA',1,'dirT','C:\FISHerMan\Db\Mouse.trna.fas',...
+%     'tRNA',1,'dirT','C:\FISHerMan\Db\Mouse.trna.txt',...
 %     'keys',{'ncrna','gene:\S*','gene_biotype:\S*'});
 
 if params(1).verbose
@@ -29,18 +29,21 @@ for n = 1:length(Header)
     
     if isempty(temp1)
         disp('missing transcript ID');
+        quit;
     elseif strfind(temp1,'.')
         temp1pos=strfind(temp1,'.');
         temp1=temp1(1:temp1pos(1)-1);
     end
     if isempty(temp2)
         disp('missing gene ID');
+        quit;
     elseif strfind(temp2,'.')
         temp2pos=strfind(temp2,'.');
         temp2=temp2(1:temp2pos(1)-1);
     end
     if isempty(temp3)
         disp('missing gene type');
+        quit;
     elseif strfind(temp3,'.')
         temp3pos=strfind(temp3,'.');
         temp3=temp3(1:temp3pos(1)-1);
