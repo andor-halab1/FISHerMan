@@ -6,6 +6,17 @@
 	<key2>ncrna</key2>
 	<key3>gene:\S*</key3>
 	<key4>gene_biotype:\S*</key4>
+	<number>48</number>
+	<length>30</length>
+	<gap>10</gap>
+	<gf>GGAATCGTTGCGGGTGTCCT</gf>
+	<grr>CCGCAACATCCAGCATCGTG</grr>
+	<T7r>CCCTATAGTGAGTCGTATTA</T7r>
+	<rRr>AGAGTGAGTAGTAGTGGAGT</rRr>
+	<rGr>GATGATGTAGTAGTAAGGGT</rGr>
+    <rBr>TGTGATGGAAGTTAGAGGGT</rBr>
+	<rIRr>GGAGTAGTTGGTTGTTAGGA</rIRr>
+	<parallel>0</parallel>
   </general>
   
   <!-- rnaSeq parameters -->
@@ -48,41 +59,38 @@
   <!-- transcriptListParse.m -->
   <transcriptList>
     <dir1>C:\FISHerMan\Db\Mouse.transcriptList.MouseBrain500.txt</dir1>
-    <length>40</length>
-	<number>24</number>
   </transcriptList>
   
   <!-- OligoArray parameters -->
   <!-- runOligoArray.m -->
   <OligoArray>
+    <!--
     <GbMem>16</GbMem>
 	<maxFragment>1000</maxFragment>
-	<crosshybeT>72</crosshybeT>
-	<crosshybeT>72.0</crosshybeT>
-	<minTm>70</minTm>
-	<maxTm>90</maxTm>
-	<minPercentGC>40.0</minPercentGC>
-	<maxPercentGC>65.0</maxPercentGC>
-	<probeLength>30</probeLength>
-	<probeLengthMax>30</probeLengthMax>
-	<minProbeDist>40</minProbeDist>
 	<maskedSeq>"GGGGGG;CCCCCC;TTTTTT;AAAAAA"</maskedSeq>
 	<oligoArrayPath>C:\OligoArray\</oligoArrayPath>
 	<oligoArrayExe>C:\OligoArray\OligoArray2.jar</oligoArrayExe>
     <blastDbPath>C:\OligoArray\BlastDb\</blastDbPath>
 	<numParallel>10</numParallel>
+	<crosshybeT>72</crosshybeT>
+	<crosshybeT>72.0</crosshybeT>
+	<minTm>70</minTm>
+	<maxTm>90</maxTm>
+	<probeLength>30</probeLength>
+	<probeLengthMax>30</probeLengthMax>
+	<minProbeDist>40</minProbeDist>
+	-->
+	<minPercentGC>40.0</minPercentGC>
+	<maxPercentGC>65.0</maxPercentGC>
   </OligoArray>
   
   <!-- oligos parameters -->
   <!-- oligosParse.m -->
   <oligos>
-	<number>48</number>
 	<seqNum>1000</seqNum>
 	<thres>30</thres>
 	<querySize>30</querySize>
-	<DbSize>200000</DbSize>
     <blastArgs>-S 2</blastArgs>
-	<parallel>0</parallel>
 	<dirST>C:\FISHerMan\Db\Mouse.STList.txt</dirST>
   </oligos>
   
@@ -90,8 +98,6 @@
   <!-- appendAdapters.m -->
   <adapters>
     <dir1>C:\FISHerMan\Db\Mouse.alladapters.txt</dir1>
-	<gf>GGAATCGTTGCGGGTGTCCT</gf>
-	<grr>CCGCAACATCCAGCATCGTG</grr>
   </adapters>
   
   <!-- 1stPCR parameters -->
@@ -101,9 +107,6 @@
 	<thres>22</thres>
 	<querySize>20</querySize>
     <blastArgs>-S 3</blastArgs>
-	<parallel>0</parallel>
-	<gf>GGAATCGTTGCGGGTGTCCT</gf>
-	<grr>CCGCAACATCCAGCATCGTG</grr>
   </onePCR>
   
   <!-- otherSteps parameters -->
@@ -113,12 +116,6 @@
 	<querySize>50</querySize>
     <blastArgs1>-S 2</blastArgs1>
 	<blastArgs2>-S 3</blastArgs2>
-	<grr>CCGCAACATCCAGCATCGTG</grr>
-	<T7r>CCCTATAGTGAGTCGTATTA</T7r>
-	<rRr>AGAGTGAGTAGTAGTGGAGT</rRr>
-	<rGr>GATGATGTAGTAGTAAGGGT</rGr>
-    <rBr>TGTGATGGAAGTTAGAGGGT</rBr>
-	<rIRr>GGAGTAGTTGGTTGTTAGGA</rIRr>
   </otherSteps>
   
   <!-- arna parameters -->
@@ -127,15 +124,12 @@
 	<seqNum>1000</seqNum>
 	<thres>30</thres>
 	<querySize>73</querySize>
-	<DbSize>200000</DbSize>
     <blastArgs>-S 2</blastArgs>
-	<parallel>0</parallel>
   </arna>
   
   <!-- probeList parameters -->
   <!-- generateProbeList.m -->
   <probeList>
-	<number>48</number>
 	<dirST>C:\FISHerMan\Db\Mouse.STList.txt</dirST>
   </probeList>
   
