@@ -1,7 +1,12 @@
 function runOligoArray(species,varargin)
 
-if length(varargin) >= 1
+if length(varargin) == 1
     params = varargin{1};
+elseif length(varargin) == 2
+    params = varargin{1};
+    GC = varargin{2};
+    params(1).minPercentGC = GC(1);
+    params(1).maxPercentGC = GC(2);
 else
     params = struct('species','Mouse','verbose',1,'GbMem',16,'maxFragment',1E3,...
         'crosshybeT',75,'secstructT',75.0,'minTm',75,'maxTm',87,...

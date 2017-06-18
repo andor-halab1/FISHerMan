@@ -1,4 +1,4 @@
-function [longHeader,longSequence]...
+function [longHeader,longSequence,X]...
     =transcriptListParse(transcriptList,cdnaHeader,cdnaSequence,ncrnaHeader,ncrnaSequence,params)
 
 % params = struct('species','Mouse','verbose',1,...
@@ -37,6 +37,23 @@ end
 if params(1).verbose
     disp(['  ' num2str(length(longHeader)) ' transcripts have length longer than '...
         num2str(params(1).length*params(1).number) ' nt']);
+end
+
+%% Check transcript GC contents
+
+GC=[];
+for n = 1:length(longHeader)
+    G=length(strfind(longSequence{n,1},'G'));
+    C=length(strfind(longSequence{n,1},'C'));
+    GC=[GC;(G+C)/length(longSequence{n,1})*100];
+end
+
+hist(GC,0:10:100);
+[X,~]=ginput(2);
+X=floor(X);
+
+if params(1).verbose
+    disp(['  GC content threshold is from ' num2str(X(1)) '% to ' num2str(X(2)) '%']);
 end
 
 %% Segment each transcript sequence into 1kb pieces, so later analysis runs more efficiently
