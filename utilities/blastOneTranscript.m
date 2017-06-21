@@ -49,10 +49,6 @@ fastawrite(OTDb2, Header, Sequence);
 blastformat('Inputdb', OTDb2,...
     'FormatArgs', '-o T -p F');
 
-%% Generate a temporary probe list file for blast
-params(1).seqNum = length(OTHeader);
-filePathList = blastFileSplit(OTHeader, OTSequenceCore, params);
-
 %% Blast probes against 2nd PCR primers and other probes
 DbPath1 = OTDb1;
 DbPath2 = OTDb2;
@@ -68,8 +64,8 @@ if params(1).verbose
     disp('  blasting the temporary probe list file');
     startTime = tic;
 end
-blastData{1,1} = blastOp(filePathList{1}, DbPath1, blastArgs1);
-blastData{2,1} = blastOp(filePathList{1}, DbPath2, blastArgs2);
+blastData{1,1} = blastOp(OTDb1, DbPath1, blastArgs1);
+blastData{2,1} = blastOp(OTDb1, DbPath2, blastArgs2);
 if params(1).verbose
     totalTime = toc(startTime);
     disp(['  elapsed time is ' num2str(totalTime) ' seconds']);
@@ -82,7 +78,6 @@ if ~isempty(seqDelete)
     seqDelete = index(seqDelete);
 end
 
-fileCleanUp(filePathList);
 delete([OTDb1 '*']);
 delete([OTDb2 '*']);
 

@@ -4,7 +4,7 @@ function seqDelete=findSeqDelete(data)
 seqDelete = [];
 for n = 1:length(data{2,1})
     if ~isempty(data{2,1}(n).Hits)
-        seqDelete = [seqDelete n];
+        seqDelete = [seqDelete;n];
     end
 end
 
@@ -32,12 +32,11 @@ pairNumber = cell2mat(pairNumber);
 while size(pairNumber,1) > 0
     temp = reshape(pairNumber, [numel(pairNumber),1]);
     tempDelete = mode(temp);
-    seqDelete = [seqDelete tempDelete];
+    seqDelete = [seqDelete;tempDelete];
     index = (pairNumber == tempDelete);
     index = logical(index(:,1)+index(:,2));
     pairNumber(index,:) = [];
 end
 
 seqDelete = unique(seqDelete, 'stable');
-seqDelete = seqDelete';
 
