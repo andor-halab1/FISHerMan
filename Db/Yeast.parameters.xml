@@ -58,7 +58,7 @@
   <!-- transcriptList parameters -->
   <!-- transcriptListParse.m -->
   <transcriptList>
-    <dir1>C:\FISHerMan\Db\Yeast.transcriptList.shortList.txt</dir1>
+    <dir1>C:\FISHerMan\Db\Yeast.transcriptList.txt</dir1>
   </transcriptList>
   
   <!-- OligoArray parameters -->
@@ -118,8 +118,7 @@
   <!-- blastAbundantRNA.m -->
   <arna>
 	<thres>30</thres>
-	<!--<querySize>73</querySize>-->
-	<querySize>53</querySize>
+	<querySize>48</querySize>
     <blastArgs>-S 2</blastArgs>
   </arna>
   

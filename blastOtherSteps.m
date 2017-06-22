@@ -38,6 +38,7 @@ end
 
 probeHeader(seqDelete)= [];
 probeSequence(seqDelete)= [];
+% probeSequence3Seg(seqDelete)= [];
 probeSequence2Seg(seqDelete)= [];
 probeSequenceCore(seqDelete)= [];
 

@@ -118,8 +118,7 @@
   <!-- blastAbundantRNA.m -->
   <arna>
 	<thres>30</thres>
-	<!--<querySize>73</querySize>-->
-	<querySize>53</querySize>
+	<querySize>48</querySize>
     <blastArgs>-S 2</blastArgs>
   </arna>
   
