@@ -7,11 +7,10 @@
 	<gkey3>gene:\S*</gkey3>
 	<gkey4>gene_biotype:\S*</gkey4>
 	<number>48</number>
-	<length>30</length>
-	<gap>10</gap>
+	<length>25</length>
+	<gap>5</gap>
 	<gf>GGAATCGTTGCGGGTGTCCT</gf>
-	<grr>CCGCAACATCCAGCATCGTG</grr>
-	<T7r>CCCTATAGTGAGTCGTATTA</T7r>
+	<grr>CCCTATAGTGAGTCGTATTA</grr>
 	<rRr>AGAGTGAGTAGTAGTGGAGT</rRr>
 	<rGr>GATGATGTAGTAGTAAGGGT</rGr>
     <rBr>TGTGATGGAAGTTAGAGGGT</rBr>
@@ -119,7 +118,8 @@
   <!-- blastAbundantRNA.m -->
   <arna>
 	<thres>30</thres>
-	<querySize>73</querySize>
+	<!--<querySize>73</querySize>-->
+	<querySize>53</querySize>
     <blastArgs>-S 2</blastArgs>
   </arna>
   
