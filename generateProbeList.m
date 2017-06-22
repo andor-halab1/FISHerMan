@@ -12,16 +12,15 @@ end
 pos = regexp(probeHeader, ':');
 trimHeader = {};
 for n = 1:length(probeHeader)
-    trimHeader{end+1} = probeHeader{n,1}(1:pos{n,1}(1)-1);
+    trimHeader{end+1,1} = probeHeader{n,1}(1:pos{n,1}(1)-1);
 end
-trimHeader = trimHeader';
 uniqueHeader = unique(trimHeader, 'stable');
 
 indexTotal = zeros(length(trimHeader),1);
 for n = 1:length(uniqueHeader)
     index = ismember(trimHeader, uniqueHeader{n,1});
     if sum(index) < params(1).number &&...
-            checkSpecialTranscripts(uniqueHeader{n,1},params) % for Bin's special sequences
+            checkSpecialTranscripts(uniqueHeader{n,1},params) % check for Bin's special sequences
         indexTotal = indexTotal+index;
         if params(1).verbose
             disp(['  transcript ' uniqueHeader{n,1} ...
@@ -49,6 +48,7 @@ end
 
 probeHeader(indexTotal) = [];
 probeSequence(indexTotal) = [];
+trimHeader(indexTotal) = [];
 
 % disp('  randomizing and saving the list of probes');
 % indexTotal = randperm(length(probeHeader))';

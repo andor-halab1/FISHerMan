@@ -24,15 +24,15 @@ for n = 1:length(OTHeader)
     OTHeader{n,1} = strcat(OTHeader{n,1},'=',num2str(n));
 end
 
-Header{1,1} = 'ENSPRIMERT10';
+Header{1,1} = 'ENSPRIMERT11';
 Sequence{1,1} = strcat(params(1).rRr,OTAdapterSequence);
-Header{2,1} = 'ENSPRIMERT11';
+Header{2,1} = 'ENSPRIMERT12';
 Sequence{2,1} = strcat(params(1).rGr,OTAdapterSequence);
-Header{3,1} = 'ENSPRIMERT12';
+Header{3,1} = 'ENSPRIMERT13';
 Sequence{3,1} = strcat(params(1).rBr,OTAdapterSequence);
-Header{4,1} = 'ENSPRIMERT13';
+Header{4,1} = 'ENSPRIMERT14';
 Sequence{4,1} = strcat(params(1).rIRr,OTAdapterSequence);
-Header{5,1} = 'ENSPRIMERT14';
+Header{5,1} = 'ENSPRIMERT15';
 Sequence{5,1} = strcat(params(1).grr,params(1).T7r);
 
 if exist(OTDb1, 'file')

@@ -48,8 +48,11 @@ for n = 1:length(longHeader)
     GC=[GC;(G+C)/length(longSequence{n,1})*100];
 end
 
+title('histogram of GC contents');
 hist(GC,0:10:100);
+disp('  click to select the boundaries for GC contents');
 [X,~]=ginput(2);
+X=sort(X,'ascend');
 X=floor(X);
 
 if params(1).verbose

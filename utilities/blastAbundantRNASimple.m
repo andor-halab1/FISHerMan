@@ -76,10 +76,9 @@ for n = 1:length(data)
         end
     end
     if flag == 1
-        seqDelete = [seqDelete n];
+        seqDelete = [seqDelete;n];
     end
 end
-seqDelete = seqDelete';
 
 Header(seqDelete)= [];
 Sequence(seqDelete)= [];

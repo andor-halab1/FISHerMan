@@ -78,7 +78,7 @@ indexTotal = zeros(length(trimNames),1);
 for n = 1:length(uniqueNames)
     index = ismember(trimNames, uniqueNames{n,1});
     if sum(index) < params(1).number &&...
-            checkSpecialTranscripts(uniqueNames{n,1},params) % for Bin's special sequences
+            checkSpecialTranscripts(uniqueNames{n,1},params) % check for Bin's special sequences
         indexTotal = indexTotal+index;
         if params(1).verbose
             disp(['  transcript ' uniqueNames{n,1} ...
