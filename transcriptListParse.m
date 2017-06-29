@@ -36,7 +36,7 @@ end
 
 if params(1).verbose
     disp(['  ' num2str(length(longHeader)) ' transcripts have length longer than '...
-        num2str(params(1).length*params(1).number) ' nt']);
+        num2str(params(1).length*params(1).number) ' nts']);
 end
 
 %% Check transcript GC contents
@@ -48,8 +48,8 @@ for n = 1:length(longHeader)
     GC=[GC;(G+C)/length(longSequence{n,1})*100];
 end
 
+hist(GC,0:5:100);
 title('histogram of GC contents');
-hist(GC,0:10:100);
 disp('  click to select the boundaries for GC contents');
 [X,~]=ginput(2);
 X=sort(X,'ascend');

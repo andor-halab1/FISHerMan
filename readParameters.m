@@ -35,10 +35,10 @@ probeList=xmlParse(parameters, 'parameters', 'probeList');
 
 %% Parse general parameters
 verbose=xmlParse(general, 'general', 'verbose');
-gkey1=xmlParse(general, 'general', 'key1');
-gkey2=xmlParse(general, 'general', 'key2');
-gkey3=xmlParse(general, 'general', 'key3');
-gkey4=xmlParse(general, 'general', 'key4');
+gkey1=xmlParse(general, 'general', 'gkey1');
+gkey2=xmlParse(general, 'general', 'gkey2');
+gkey3=xmlParse(general, 'general', 'gkey3');
+gkey4=xmlParse(general, 'general', 'gkey4');
 pnumber=xmlParse(general,'general','number');
 plength=xmlParse(general,'general','length');
 pgap=xmlParse(general,'general','gap');

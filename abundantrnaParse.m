@@ -3,12 +3,13 @@ function [Header,Sequence]...
 
 % params = struct('species','Mouse','verbose',1,...
 %     'percent',0.001,...
-%     'keys',{'ENS\w*T\d*',':rRNA',':Mt_rRNA',':tRNA',':Mt_tRNA'});
+%     'keys',{':rRNA',':Mt_rRNA',':tRNA',':Mt_tRNA'});
 
 if params(1).verbose
     disp('generating abundant rna database files for Blast');
 end
 
+% pick highly abundant rna based on seqData
 transcriptID = {};
 if ~isempty(seqData)
     seqDataTable = cell2table(seqData);
@@ -18,6 +19,7 @@ if ~isempty(seqData)
     transcriptID(end+1:end+geneNum,1) = seqData(1:geneNum,1);
 end
 
+% make sure rRNA and tRNA are included
 for i = 1:length(params)
     pos{i,1} = regexp(ncrnaHeader, params(i).keys, 'end');
 end

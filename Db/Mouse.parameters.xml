@@ -2,10 +2,10 @@
   <!-- general parameters -->
   <general>
     <verbose>1</verbose>
-	<key1>cdna</key1>
-	<key2>ncrna</key2>
-	<key3>gene:\S*</key3>
-	<key4>gene_biotype:\S*</key4>
+	<gkey1>cdna</gkey1>
+	<gkey2>ncrna</gkey2>
+	<gkey3>gene:\S*</gkey3>
+	<gkey4>gene_biotype:\S*</gkey4>
 	<number>48</number>
 	<length>30</length>
 	<gap>10</gap>

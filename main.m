@@ -30,11 +30,11 @@ elseif params.rnaSeq(1).data == 2
 end
 
 %% Process the database files
-%  now I am just using the mRNA seq data, and it tells me which transcripts
+%  now I am just using the mRNA seq data, so it tells me which transcripts
 %  in the cdna databse are expressed. Later on, I can also use the total
 %  RNA seq data, and it will tell me which transcripts in the ncrna
-%  database are expressed. But be sure to include rRNA and tRNA, for often
-%  these two types of RNA are depleted in RNA seq.
+%  database are expressed. Be sure to include rRNA and tRNA, for often
+%  these two types of RNA are depleted in RNA seq experiments.
 [cdnaHeader,cdnaSequence]=cdnaParse(params.cdna(1).dir1,seqData,params.cdna);
 if params.rnaSeq(1).mRNA
     [ncrnaHeader,ncrnaSequence]...

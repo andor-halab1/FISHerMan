@@ -29,3 +29,4 @@ end
 FPKM = cell2mat(seqData(:,3));
 index = FPKM>=params(1).thres;
 seqData = seqData(index,:);
+
