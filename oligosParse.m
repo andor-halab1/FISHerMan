@@ -2,7 +2,7 @@ function oligos = oligosParse(params)
 
 % params = struct('species','Mouse','verbose',1,...
 %     'number',48,'seqNum',1000,'thres',30,'querySize',30,...
-%     'DbSize',2*10^5,'blastArgs','-S 2','parallel', 0,...
+%     'blastArgs','-S 2','parallel', 0,...
 %     'specialTranscripts','C:\FISHerMan\Db\Mouse.STList.fas');
 
 if params(1).verbose
@@ -34,6 +34,7 @@ for n = 1:length(geneNames)
         disp(['  analyzing oligo entry no. ' num2str(n)]);
     end
     
+    % all Header here are two-segment Header
     pos = regexp(geneNames{n,1}, ':');
     if ~isempty(pos)
         geneName=geneNames{n,1}(pos(1)+1:end);
@@ -41,10 +42,10 @@ for n = 1:length(geneNames)
     
     if length(regexp(nonspecificHits{n,1}, geneName)) < ...
             length(regexp(nonspecificHits{n,1}, ':'))
-        index = [index n];
+        index = [index;n];
     end
 end
-index = unique(index','stable');
+index = unique(index,'stable');
 
 geneNames(index) = [];
 nonspecificHits(index) = [];

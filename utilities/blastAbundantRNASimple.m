@@ -7,7 +7,7 @@ function [Header,Sequence,nonSequence]...
 
 % params = struct('species','Mouse','verbose',1,...
 %     'number',48,'seqNum',1000,'thres',30,'querySize',30,...
-%     'DbSize',2*10^5,'blastArgs','-S 2','parallel', 0,...
+%     'blastArgs','-S 2','parallel', 0,...
 %     'specialTranscripts','C:\FISHerMan\Db\Mouse.STList.fas');
 
 if isempty(nonSequence)
@@ -23,7 +23,7 @@ if params(1).verbose
     disp('  spliting fasta files for parallel computing');
 end
 
-filePathList = blastFileSplit(Header, Sequence, params);
+filePathList = blastFileSplit(Header, Sequence, params(1).seqNum);
 fileNum = length(filePathList);
 
 %% Blast mouse oligos against abundant rna

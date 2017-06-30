@@ -50,6 +50,11 @@ end
 
 hist(GC,0:5:100);
 title('histogram of GC contents');
+temp=axis;
+temp(1)=0;
+temp(2)=100;
+axis(temp);
+
 disp('  click to select the boundaries for GC contents');
 [X,~]=ginput(2);
 X=sort(X,'ascend');

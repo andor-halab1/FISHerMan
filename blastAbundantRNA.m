@@ -6,7 +6,7 @@ function [Header,Sequence,nonSequence,nonSequence2]...
     =blastAbundantRNA(adapterList,Header,Sequence,nonSequence,nonSequence2,params)
 
 % params = struct('species','Mouse','verbose',1,...
-%     'seqNum',1000,'thres',30,'querySize',73,'DbSize',200000,...
+%     'seqNum',1000,'thres',30,'querySize',73,...
 %     'blastArgs','-S 2','parallel', 0);
 
 if isempty(nonSequence)
@@ -26,7 +26,7 @@ if params(1).verbose
     disp('  spliting fasta files for parallel computing');
 end
 
-filePathList = blastFileSplit(Header, Sequence, params);
+filePathList = blastFileSplit(Header, Sequence, params(1).seqNum);
 fileNum = length(filePathList);
 
 %% Blast mouse oligos against abundant rna

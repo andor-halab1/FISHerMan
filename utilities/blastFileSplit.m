@@ -1,11 +1,5 @@
-function filePathList = blastFileSplit(Header, Sequence, params)
+function filePathList = blastFileSplit(Header, Sequence, seqNum)
 
-% params = struct('species','Mouse','verbose',1,...
-%     'number',48,'seqNum',1000,'thres',30,'querySize',30,...
-%     'DbSize',2*10^5,'blastArgs','-S 2','parallel', 0,...
-%     'specialTranscripts','C:\FISHerMan\Db\Mouse.STList.fas');
-
-seqNum = params(1).seqNum;
 filePathList = {};
 
 % MatLab's use of blastlocal requires short entry names

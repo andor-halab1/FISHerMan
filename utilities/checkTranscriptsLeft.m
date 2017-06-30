@@ -1,7 +1,5 @@
 function [geneNumLeft,geneNumDelete]=checkTranscriptsLeft(adapterList,probeHeader)
 
-% params = struct('species','Mouse','verbose',1);
-
 [adapterHeader, adapterSequence] = fastaread(adapterList);
 adapterHeader = adapterHeader';
 adapterSequence = adapterSequence';

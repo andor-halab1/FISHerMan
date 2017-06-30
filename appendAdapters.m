@@ -18,11 +18,10 @@ trimmedHeader = Header;
 for n = 1:length(Header)
     trimmedHeader{n,1} = Header{n,1}(1:pos{n,1}(1)-1);
 end
-uniqueHeader = unique(trimmedHeader, 'stable');
+adapterHeader = unique(trimmedHeader, 'stable');
 
-geneNum = length(uniqueHeader);
+geneNum = length(adapterHeader);
 [~, adapterSequence] = fastaread(adapterList);
-adapterHeader = uniqueHeader;
 adapterSequence = adapterSequence(1:geneNum)';
 
 adapterList = [params(1).species '.adapters.txt'];

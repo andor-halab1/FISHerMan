@@ -2,7 +2,7 @@ function [probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore]...
     =blast1stPCR(adapterList,probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore,params)
 
 % params = struct('species','Mouse','verbose',1,...
-%     'thres',22,'querySize',20,'seqNum',1000,...
+%     'seqNum',1000,'thres',22,'querySize',20,...
 %     'blastArgs','-S 3','parallel', 0,...
 %     'gf','GGAATCGTTGCGGGTGTCCT','grr','CCGCAACATCCAGCATCGTG');
 
@@ -42,7 +42,7 @@ adapterSequence{end+1,1} = params(1).gf;
 adapterHeader{end+1,1} = 'ENSPRIMERT01';
 adapterSequence{end+1,1} = params(1).grr;
 
-filePathList = blastFileSplit(adapterHeader, adapterSequence, params);
+filePathList = blastFileSplit(adapterHeader, adapterSequence, params(1).seqNum);
 fileNum = length(filePathList);
 
 %% Blast primers against probes

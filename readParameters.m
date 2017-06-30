@@ -132,10 +132,10 @@ maxPercentGC=str2double(maxPercentGC.getFirstChild.getData);
 len=str2double(plength.getFirstChild.getData);
 gap=str2double(pgap.getFirstChild.getData);
 
-crosshybeT=floor(81.5+0.41*minPercentGC-500/len)-2;
-secstructT=floor(81.5+0.41*minPercentGC-500/len)-2;
 minTm=floor(81.5+0.41*minPercentGC-500/len)-2;
 maxTm=ceil(81.5+0.41*maxPercentGC-500/len)+2;
+secstructT=minTm;
+crosshybeT=minTm;
 
 params.OligoArray=struct('species',species,...
     'verbose',str2double(verbose.getFirstChild.getData),...
