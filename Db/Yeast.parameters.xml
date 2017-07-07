@@ -7,7 +7,7 @@
 	<gkey3>gene:\S*</gkey3>
 	<gkey4>gene_biotype:\S*</gkey4>
 	<number>48</number>
-	<length>25</length>
+	<length>20</length>
 	<gap>5</gap>
 	<gf>GGAATCGTTGCGGGTGTCCT</gf>
 	<grr>CCCTATAGTGAGTCGTATTA</grr>
@@ -87,7 +87,7 @@
   <!-- oligos parameters -->
   <!-- oligosParse.m -->
   <oligos>
-	<thres>30</thres>
+	<thres>26</thres>
     <blastArgs>-S 2</blastArgs>
 	<dirST>C:\FISHerMan\Db\Yeast.STList.txt</dirST>
   </oligos>
@@ -117,8 +117,8 @@
   <!-- arna parameters -->
   <!-- blastAbundantRNA.m -->
   <arna>
-	<thres>30</thres>
-	<querySize>48</querySize>
+	<thres>26</thres>
+	<querySize>43</querySize>
     <blastArgs>-S 2</blastArgs>
   </arna>
   
