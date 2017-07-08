@@ -29,7 +29,12 @@ blastArgs = [params.blastArgs ' -e ' num2str(eValue)];
 
 data = blastOp('testDb.fas', DbPath, blastArgs);
 
-testDbSize = 2*data(1).Hits(1).HSPs(1).Expect/(params.querySize*2^(-data(1).Hits(1).HSPs(1).Score));
+if ~isempty(data(1).Hits)
+    testDbSize = 2*data(1).Hits(1).HSPs(1).Expect/(params.querySize*2^(-data(1).Hits(1).HSPs(1).Score));
+else
+    disp('using a wrong database size');
+    testDbSize = 10000;
+end
 
 fileCleanUp({'testDb.fas'});
 
