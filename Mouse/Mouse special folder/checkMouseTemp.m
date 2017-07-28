@@ -31,4 +31,4 @@ for n = 1:length(geneDelete)
 end
 uniquegeneDelete=unique(geneDelete);
 
-fastawrite('Mouse.probes.arna.txt',uniquegeneDelete,uniquegeneDelete);
+fastawrite('Mouse.probestemp.arna.txt',uniquegeneDelete,uniquegeneDelete);

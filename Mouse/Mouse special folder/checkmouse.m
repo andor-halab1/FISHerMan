@@ -90,7 +90,7 @@ uniqueHeader=unique(Header);
 
 % this number (10) was tested one-by-one from 1
 indexTotal=ismember(Header,uniqueHeader{10,1});
-for n = 2:length(uniqueHeader)
+for n = 11:length(uniqueHeader)
     index=ismember(Header,uniqueHeader{n,1});
     if sum(index)<48 && isempty(strfind(uniqueHeader{n,1},'ENSSPT'))
         indexTotal=indexTotal+index;
