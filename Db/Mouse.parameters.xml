@@ -15,7 +15,7 @@
 	<rGr>GATGATGTAGTAGTAAGGGT</rGr>
     <rBr>TGTGATGGAAGTTAGAGGGT</rBr>
 	<rIRr>GGAGTAGTTGGTTGTTAGGA</rIRr>
-	<parallel>0</parallel>
+	<parallel>1</parallel>
 	<seqNum>1000</seqNum>
   </general>
   
@@ -23,12 +23,12 @@
   <!-- averageRNASeq.m and readRNASeq.m -->
   <rnaSeq>
   	<data>2</data>
-    <dir1>C:\FISHerMan\Db\mouse_frontal_cortex_mRNASeq_ENCFF653BKJ.xlsx</dir1>
-	<dir2>C:\FISHerMan\Db\mouse_frontal_cortex_mRNASeq_ENCFF703SOK.xlsx</dir2>
+    <dir1>C:\FISHerMan\Db\mouse_EF_mRNASeq_ENCFF085CFM.xlsx</dir1>
+	<dir2>C:\FISHerMan\Db\mouse_EF_mRNASeq_ENCFF156XHX.xlsx</dir2>
 	<mRNA>1</mRNA>
     <key1>ENS\w*T\d*</key1>
 	<key2>ENS\w*G\d*</key2>
-    <thres>0.1</thres>
+    <thres>0.4</thres>
   </rnaSeq>
   
   <!-- cdna parameters -->
@@ -58,7 +58,7 @@
   <!-- transcriptList parameters -->
   <!-- transcriptListParse.m -->
   <transcriptList>
-    <dir1>C:\FISHerMan\Db\Mouse.transcriptList.MouseBrain500.txt</dir1>
+    <dir1>C:\FISHerMan\Db\Mouse.transcriptList.MEF.txt</dir1>
   </transcriptList>
   
   <!-- OligoArray parameters -->
