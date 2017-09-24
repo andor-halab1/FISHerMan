@@ -15,7 +15,7 @@
 	<rGr>GATGATGTAGTAGTAAGGGT</rGr>
     <rBr>TGTGATGGAAGTTAGAGGGT</rBr>
 	<rIRr>GGAGTAGTTGGTTGTTAGGA</rIRr>
-	<parallel>1</parallel>
+	<parallel>0</parallel>
 	<seqNum>1000</seqNum>
   </general>
   
