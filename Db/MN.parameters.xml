@@ -1,0 +1,131 @@
+<parameters>
+  <!-- general parameters -->
+  <general>
+    <verbose>1</verbose>
+	<gkey1>cdna</gkey1>
+	<gkey2>ncrna</gkey2>
+	<gkey3>gene:\S*</gkey3>
+	<gkey4>gene_biotype:\S*</gkey4>
+	<number>48</number>
+	<length>25</length>
+	<gap>5</gap>
+	<gf>GGAATCGTTGCGGGTGTCCT</gf>
+	<grr>CCCTATAGTGAGTCGTATTA</grr>
+	<rRr>AGAGTGAGTAGTAGTGGAGT</rRr>
+	<rGr>GATGATGTAGTAGTAAGGGT</rGr>
+    <rBr>TGTGATGGAAGTTAGAGGGT</rBr>
+	<rIRr>GGAGTAGTTGGTTGTTAGGA</rIRr>
+	<parallel>0</parallel>
+	<seqNum>1000</seqNum>
+  </general>
+  
+  <!-- rnaSeq parameters -->
+  <!-- averageRNASeq.m and readRNASeq.m -->
+  <rnaSeq>
+  	<data>1</data>
+    <dir1>C:\FISHerMan\Db\mouse_hippocampus_mRNASeq.xlsx</dir1>
+	<dir2></dir2>
+	<mRNA>1</mRNA>
+    <key1>ENS\w*T\d*</key1>
+	<key2>ENS\w*G\d*</key2>
+    <thres>0.4</thres>
+  </rnaSeq>
+  
+  <!-- cdna parameters -->
+  <!-- cdnaParse.m -->
+  <cdna>
+    <dir1>C:\FISHerMan\Db\MN.cdna.fa</dir1>
+  </cdna>
+  
+  <!-- ncrna parameters -->
+  <!-- ncrnaParse.m -->
+  <ncrna>
+    <dir1>C:\FISHerMan\Db\MN.ncrna.fa</dir1>
+	<tRNA>1</tRNA>
+	<dirT>C:\FISHerMan\Db\MN.trna.txt</dirT>
+  </ncrna>
+  
+  <!-- abundantrna parameters -->
+  <!-- abundantrnaParse.m -->
+  <abundantrna>
+    <percent>0.001</percent>
+    <key1>:rRNA</key1>
+	<key2>:Mt_rRNA</key2>
+	<key3>:tRNA</key3>
+	<key4>:Mt_tRNA</key4>
+  </abundantrna>
+  
+  <!-- transcriptList parameters -->
+  <!-- transcriptListParse.m -->
+  <transcriptList>
+    <dir1>C:\FISHerMan\Db\MN.transcriptList.hc.txt</dir1>
+  </transcriptList>
+  
+  <!-- OligoArray parameters -->
+  <!-- runOligoArray.m -->
+  <OligoArray>
+    <!--
+    <GbMem>16</GbMem>
+	<maxFragment>1000</maxFragment>
+	<maskedSeq>"GGGGGG;CCCCCC;TTTTTT;AAAAAA"</maskedSeq>
+	<oligoArrayPath>C:\OligoArray\</oligoArrayPath>
+	<oligoArrayExe>C:\OligoArray\OligoArray2.jar</oligoArrayExe>
+    <blastDbPath>C:\OligoArray\BlastDb\</blastDbPath>
+	<numParallel>10</numParallel>
+	<crosshybeT>72</crosshybeT>
+	<crosshybeT>72.0</crosshybeT>
+	<minTm>70</minTm>
+	<maxTm>90</maxTm>
+	<probeLength>30</probeLength>
+	<probeLengthMax>30</probeLengthMax>
+	<minProbeDist>40</minProbeDist>
+	-->
+	<minPercentGC>40.0</minPercentGC>
+	<maxPercentGC>65.0</maxPercentGC>
+  </OligoArray>
+  
+  <!-- oligos parameters -->
+  <!-- oligosParse.m -->
+  <oligos>
+	<thres>30</thres>
+    <blastArgs>-S 2</blastArgs>
+	<dirST>C:\FISHerMan\Db\MN.STList.txt</dirST>
+  </oligos>
+  
+  <!-- adapters parameters -->
+  <!-- appendAdapters.m -->
+  <adapters>
+    <dir1>C:\FISHerMan\Db\MN.alladapters.txt</dir1>
+  </adapters>
+  
+  <!-- 1stPCR parameters -->
+  <!-- blast1stPCR.m -->
+  <onePCR>
+	<thres>22</thres>
+	<querySize>20</querySize>
+    <blastArgs>-S 3</blastArgs>
+  </onePCR>
+  
+  <!-- otherSteps parameters -->
+  <!-- blastOtherSteps.m -->
+  <otherSteps>
+	<thres>22</thres>
+    <blastArgs1>-S 2</blastArgs1>
+	<blastArgs2>-S 3</blastArgs2>
+  </otherSteps>
+  
+  <!-- arna parameters -->
+  <!-- blastAbundantRNA.m -->
+  <arna>
+	<thres>30</thres>
+	<querySize>48</querySize>
+    <blastArgs>-S 2</blastArgs>
+  </arna>
+  
+  <!-- probeList parameters -->
+  <!-- generateProbeList.m -->
+  <probeList>
+	<dirST>C:\FISHerMan\Db\MN.STList.txt</dirST>
+  </probeList>
+  
+</parameters>
