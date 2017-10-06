@@ -1,3 +1,4 @@
+%% Before this step, run a portion of main.m to get seqData
 [~,Sequence]=fastaread('C:\FISHerMan\Db\MN.transcriptList.fc.txt');
 Sequence=Sequence';
 
@@ -9,10 +10,9 @@ for n = 1:length(Sequence)
         indexGeneID = strcmp(seqData(:,2),geneID);
         rnaSeq = cell2mat(seqData(indexGeneID,3));
         transcriptID = seqData(indexGeneID,1);
-        if max(rnaSeq) > seqData{index,3}
-            [~,temp]=max(rnaSeq);
-            Sequence{n,1}=transcriptID{temp,1};
-        end
+        
+        [~,temp]=max(rnaSeq);
+        Sequence{n,1}=transcriptID{temp,1};
     else
         nonExpressed=[nonExpressed;n];
     end

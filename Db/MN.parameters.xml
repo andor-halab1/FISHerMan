@@ -22,9 +22,9 @@
   <!-- rnaSeq parameters -->
   <!-- averageRNASeq.m and readRNASeq.m -->
   <rnaSeq>
-  	<data>1</data>
-    <dir1>C:\FISHerMan\Db\mouse_hippocampus_mRNASeq.xlsx</dir1>
-	<dir2></dir2>
+  	<data>2</data>
+    <dir1>C:\FISHerMan\Db\mouse_hippocampus_mRNASeq_01.xlsx</dir1>
+	<dir2>C:\FISHerMan\Db\mouse_hippocampus_mRNASeq_04.xlsx</dir2>
 	<mRNA>1</mRNA>
     <key1>ENS\w*T\d*</key1>
 	<key2>ENS\w*G\d*</key2>
