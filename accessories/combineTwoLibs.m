@@ -28,8 +28,8 @@ for n = 1:length(probeHeader)
     probeSequenceCore{n,1} = probeSequence{n,1}(31:75);
 end
 
-adapterHeader = unique(adapterHeader);
-adapterSequence = unique(adapterSequence);
+adapterHeader = unique(adapterHeader,'stable');
+adapterSequence = unique(adapterSequence,'stable');
 
 if length(adapterHeader) ~= length(probeHeader)/params.probeList.number
     disp('same transcripts appeared in both libraries');
