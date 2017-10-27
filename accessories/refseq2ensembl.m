@@ -13,7 +13,7 @@ FPKM = cell2mat(seqData(:,3));
 index = FPKM>=0.4;
 seqData = seqData(index,:);
 
-[~, temp] = xlsread('C:\FISHerMan\Db\refseq2ensembl.xlsx');
+[~, temp] = xlsread('C:\FISHerMan\accessories\refseq2ensembl.xlsx');
 
 data = temp(2:end,:);
 
