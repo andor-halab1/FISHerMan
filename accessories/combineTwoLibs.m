@@ -3,7 +3,6 @@ function combineTwoLibs(FISHerManPath,params)
 
 cd([FISHerManPath 'accessories']);
 params.onePCR.species = 'combined';
-params.probeList.species = 'combined';
 
 lib1 = input('where is the first library you want to combine: ');
 lib2 = input('where is the second library you want to combine: ');
@@ -31,7 +30,7 @@ end
 adapterHeader = unique(adapterHeader,'stable');
 adapterSequence = unique(adapterSequence,'stable');
 
-if length(adapterHeader) ~= length(probeHeader)/params.probeList.number
+if length(adapterHeader) ~= length(adapterSequence)
     disp('same transcripts appeared in both libraries');
     quit;
 end
@@ -45,5 +44,8 @@ fastawrite(adapterList,adapterHeader,adapterSequence);
 [probeHeader,probeSequence,probeSequence2Seg,probeSequenceCore]...
     =blast1stPCR(adapterList,probeHeader,probeSequence,probeSequence2Seg,probeSequenceCore,params.onePCR);
 
-params.probeList.number=params.probeList.number-3;
-probeList=generateProbeList(adapterList,probeHeader,probeSequence,params.probeList);
+probeList='combined.probes.nr.txt';
+if exist(probeList, 'file')
+    delete(probeList);
+end
+fastawrite(probeList,probeHeader,probeSequence);
