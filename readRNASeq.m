@@ -23,3 +23,7 @@ for n = 1:size(dum,1)
     data{n,3} = dum(n,5);
 end
 
+FPKM = cell2mat(data(:,3));
+index = FPKM>=params(1).thres;
+data = data(index,:);
+
