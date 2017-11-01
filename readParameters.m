@@ -133,8 +133,8 @@ maxPercentGC=str2double(maxPercentGC.getFirstChild.getData);
 len=str2double(plength.getFirstChild.getData);
 gap=str2double(pgap.getFirstChild.getData);
 
-minTm=floor(81.5+0.41*minPercentGC-500/len)-2;
-maxTm=ceil(81.5+0.41*maxPercentGC-500/len)+2;
+minTm=floor(81.5+0.41*minPercentGC-500/len)-6;
+maxTm=ceil(81.5+0.41*maxPercentGC-500/len)-4;
 secstructT=minTm;
 crosshybeT=minTm;
 

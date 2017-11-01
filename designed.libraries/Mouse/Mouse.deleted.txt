@@ -1,17 +1,16 @@
-  transcript ENSMUST00000033182 has less than 48 probes
-  transcript ENSMUST00000126529 has less than 48 probes
-  transcript ENSMUST00000018156 has less than 48 probes
-  transcript ENSMUST00000070635 has less than 48 probes
-  transcript ENSMUST00000038446 has less than 48 probes
-  transcript ENSMUST00000051356 has less than 48 probes
-  transcript ENSMUST00000007959 has less than 48 probes
-  transcript ENSMUST00000005066 has less than 48 probes
-  transcript ENSMUST00000090678 has less than 48 probes
-  transcript ENSMUST00000051477 has less than 48 probes
-  transcript ENSMUST00000032561 has less than 48 probes
   transcript ENSMUST00000001780 has less than 48 probes
-  transcript ENSMUST00000064667 has less than 48 probes
-  transcript ENSMUST00000057669 has less than 48 probes
+  transcript ENSMUST00000005066 has less than 48 probes
+  transcript ENSMUST00000070635 has less than 48 probes
+  transcript ENSMUST00000051356 has less than 48 probes
   transcript ENSMUST00000100497 has less than 48 probes
+  transcript ENSMUST00000064667 has less than 48 probes
+  transcript ENSMUST00000090678 has less than 48 probes
+  transcript ENSMUST00000018156 has less than 48 probes
+  transcript ENSMUST00000051477 has less than 48 probes
+  transcript ENSMUST00000038446 has less than 48 probes
+  transcript ENSMUST00000126529 has less than 48 probes
+  transcript ENSMUST00000057669 has less than 48 probes
+  transcript ENSMUST00000007959 has less than 48 probes
+  transcript ENSMUST00000032561 has less than 48 probes
   transcript ENSMUST00000106215 has less than 48 probes
   
