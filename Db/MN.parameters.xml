@@ -28,7 +28,7 @@
 	<mRNA>1</mRNA>
     <key1>ENS\w*T\d*</key1>
 	<key2>ENS\w*G\d*</key2>
-    <thres>1</thres>
+    <thres>0.8</thres>
   </rnaSeq>
   
   <!-- cdna parameters -->
@@ -48,7 +48,7 @@
   <!-- abundantrna parameters -->
   <!-- abundantrnaParse.m -->
   <abundantrna>
-    <percent>0.002</percent>
+    <percent>0.004</percent>
     <key1>:rRNA</key1>
 	<key2>:Mt_rRNA</key2>
 	<key3>:tRNA</key3>
