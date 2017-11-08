@@ -10,12 +10,19 @@ for n = 1:length(longHeader)
     entry{n,2}=longHeader{n,1}(pos2{2,1}{n,1}+1:pos1{3,1}{n,1}-2);
 end
 
-[Header,~]=fastaread('C:\FISHerMan\Mouse\Mouse.adapters.txt');
+[Header,~]=fastaread('C:\FISHerMan\designed.libraries\combined\combined.adapters.txt');
 Header=Header';
+
+for n = 1:length(Header)
+    temp=regexp(Header{n,1},':');
+    if ~isempty(temp)
+        Header{n,1}=Header{n,1}(1:temp(1)-1);
+    end
+end
 
 [~,~,index]=intersect(Header,entry(:,1),'stable');
 
 matchedHeader=entry(index,1);
 matchedSymbol=entry(index,2);
 
-fastawrite('C:\FISHerMan\Mouse\Mouse.symbols.txt',matchedHeader,matchedSymbol);
+fastawrite('C:\FISHerMan\designed.libraries\combined\combined.symbols.txt',matchedHeader,matchedSymbol);
