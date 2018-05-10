@@ -7,11 +7,10 @@
 	<gkey3>gene:\S*</gkey3>
 	<gkey4>gene_biotype:\S*</gkey4>
 	<number>48</number>
-	<length>30</length>
-	<gap>10</gap>
+	<length>25</length>
+	<gap>5</gap>
 	<gf>GGAATCGTTGCGGGTGTCCT</gf>
-	<grr>CCGCAACATCCAGCATCGTG</grr>
-	<T7r>CCCTATAGTGAGTCGTATTA</T7r>
+	<grr>CCCTATAGTGAGTCGTATTA</grr>
 	<rRr>AGAGTGAGTAGTAGTGGAGT</rRr>
 	<rGr>GATGATGTAGTAGTAAGGGT</rGr>
     <rBr>TGTGATGGAAGTTAGAGGGT</rBr>
@@ -24,12 +23,12 @@
   <!-- averageRNASeq.m and readRNASeq.m -->
   <rnaSeq>
   	<data>2</data>
-    <dir1>C:\FISHerMan\Db\mouse_frontal_cortex_mRNASeq_ENCFF653BKJ.xlsx</dir1>
-	<dir2>C:\FISHerMan\Db\mouse_frontal_cortex_mRNASeq_ENCFF703SOK.xlsx</dir2>
+    <dir1>C:\FISHerMan\Db\mouse_EF_mRNASeq_ENCFF085CFM.xlsx</dir1>
+	<dir2>C:\FISHerMan\Db\mouse_EF_mRNASeq_ENCFF156XHX.xlsx</dir2>
 	<mRNA>1</mRNA>
     <key1>ENS\w*T\d*</key1>
 	<key2>ENS\w*G\d*</key2>
-    <thres>0.1</thres>
+    <thres>0.4</thres>
   </rnaSeq>
   
   <!-- cdna parameters -->
@@ -49,7 +48,7 @@
   <!-- abundantrna parameters -->
   <!-- abundantrnaParse.m -->
   <abundantrna>
-    <percent>0.001</percent>
+    <percent>0.004</percent>
     <key1>:rRNA</key1>
 	<key2>:Mt_rRNA</key2>
 	<key3>:tRNA</key3>
@@ -59,7 +58,7 @@
   <!-- transcriptList parameters -->
   <!-- transcriptListParse.m -->
   <transcriptList>
-    <dir1>C:\FISHerMan\Db\Mouse.transcriptList.MouseBrain500.txt</dir1>
+    <dir1>C:\FISHerMan\Db\Mouse.transcriptList.MEF.txt</dir1>
   </transcriptList>
   
   <!-- OligoArray parameters -->
@@ -119,7 +118,7 @@
   <!-- blastAbundantRNA.m -->
   <arna>
 	<thres>30</thres>
-	<querySize>73</querySize>
+	<querySize>48</querySize>
     <blastArgs>-S 2</blastArgs>
   </arna>
   

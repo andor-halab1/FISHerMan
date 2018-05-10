@@ -7,8 +7,8 @@ elseif length(varargin) == 2
     GC = varargin{2};
     params(1).minPercentGC = GC(1);
     params(1).maxPercentGC = GC(2);
-    params(1).minTm=floor(81.5+0.41*params(1).minPercentGC-500/params(1).probeLength)-2;
-    params(1).maxTm=ceil(81.5+0.41*params(1).maxPercentGC-500/params(1).probeLength)+2;
+    params(1).minTm=floor(81.5+0.41*params(1).minPercentGC-500/params(1).probeLength)-6;
+    params(1).maxTm=ceil(81.5+0.41*params(1).maxPercentGC-500/params(1).probeLength)-4;
     params(1).secstructT=params(1).minTm;
     params(1).crosshybeT=params(1).minTm;
 else

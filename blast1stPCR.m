@@ -1,5 +1,7 @@
-function [probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore]...
-    =blast1stPCR(adapterList,probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore,params)
+% function [probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore]...
+%     =blast1stPCR(adapterList,probeHeader,probeSequence,probeSequence3Seg,probeSequenceCore,params)
+function [probeHeader,probeSequence,probeSequence2Seg,probeSequenceCore]...
+    =blast1stPCR(adapterList,probeHeader,probeSequence,probeSequence2Seg,probeSequenceCore,params)
 
 % params = struct('species','Mouse','verbose',1,...
 %     'seqNum',1000,'thres',22,'querySize',20,...
@@ -97,7 +99,8 @@ seqDelete = unique(seqDelete);
 
 probeHeader(seqDelete)= [];
 probeSequence(seqDelete)= [];
-probeSequence3Seg(seqDelete)= [];
+% probeSequence3Seg(seqDelete)= [];
+probeSequence2Seg(seqDelete)= [];
 probeSequenceCore(seqDelete)= [];
 
 %% Check how many transcripts are left after this step of screening
