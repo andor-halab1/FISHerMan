@@ -6,7 +6,7 @@ function oligos = oligosParse(params)
 %     'specialTranscripts','C:\FISHerMan\Db\Mouse.STList.fas');
 
 if params(1).verbose
-    disp('reading the result file from OligoArray');
+    disp('Reading the result file from OligoArray');
 end
 
 oligos = [params(1).species '.tempoligos.txt'];
@@ -16,13 +16,13 @@ if exist(oligos, 'file')
     temp = textscan(fid,fmt,'CollectOutput',true,'delimiter','\t','TreatAsEmpty','NA');
     fclose(fid);
 else
-    warning('missing important files from OligoArray');
+    warning('Missing important files from OligoArray');
     return;
 end
 
-%% Remove non-specific oligos
+% Remove non-specific oligos
 if params(1).verbose
-    disp('removing non-specific oligos');
+    disp('Removing non-specific oligos');
 end
 
 geneNames = temp{1,1};
@@ -45,8 +45,8 @@ for n = 1:length(geneNames)
         index = [index;n];
     end
 end
-index = unique(index,'stable');
 
+index = unique(index); 
 geneNames(index) = [];
 nonspecificHits(index) = [];
 specificHits(index) = [];
@@ -59,8 +59,8 @@ for n = 1:length(specificHits)
 end
 
 %% Blast oligos against abundant rna database and remove non-specific oligos
-[geneNames,specificHits,nonspecificHits]...
-    =blastAbundantRNASimple(geneNames,specificHits,nonspecificHits,params);
+[geneNames,specificHits,nonspecificHits,~] = blastAbundantRNA([], geneNames, specificHits, nonspecificHits, [], params);
+
 
 %% Remove transcripts without enough oligos
 if params(1).verbose
@@ -80,10 +80,9 @@ for n = 1:length(uniqueNames)
     index = ismember(trimNames, uniqueNames{n,1});
     if sum(index) < params(1).number &&...
             checkSpecialTranscripts(uniqueNames{n,1},params) % check for Bin's special sequences
-        indexTotal = indexTotal+index;
+        indexTotal = indexTotal + index;
         if params(1).verbose
-            disp(['  transcript ' uniqueNames{n,1} ...
-                ' has less than ' num2str(params(1).number) ' probes']);
+            disp(['  transcript ' uniqueNames{n,1} ' has less than ' num2str(params(1).number) ' probes']);
         end
     end
 end
@@ -93,20 +92,18 @@ geneNames(indexTotal) = [];
 nonspecificHits(indexTotal) = [];
 specificHits(indexTotal) = [];
 
-%% Rearrange the list of oligos by grouping same genes together
+% Rearrange the list of oligos by grouping same genes together
 if params(1).verbose
-    disp('rearranging the oligo fasta file');
+    disp('Rearranging the oligo fasta file');
 end
 
-[geneNames,specificHits,nonspecificHits]...
-    =rearrangeOligos(geneNames,specificHits,nonspecificHits,params);
+[geneNames,specificHits,nonspecificHits] = rearrangeOligos(geneNames,specificHits,nonspecificHits,params);
 
-%% Save the list of oligos into files
+% Save the list of oligos into files
 if params(1).verbose
-    disp('saving the oligo fasta file');
+    disp('Saving the oligo fasta file');
 end
 
-% delete(oligos);
 oligos = [params(1).species '.oligos.txt'];
 if exist(oligos, 'file')
     delete(oligos);
@@ -114,6 +111,5 @@ end
 fastawrite(oligos,geneNames,specificHits);
 
 if params(1).verbose
-    disp('done parsing OligoArray results');
+    disp('Done parsing OligoArray results');
 end
-
