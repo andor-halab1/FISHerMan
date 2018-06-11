@@ -29,7 +29,7 @@ end
 filePathList = blastFileSplit(Header, Sequence, params(1).seqNum);
 fileNum = length(filePathList);
 
-%% Blast mouse oligos against abundant rna
+% Blast mouse oligos against abundant RNA
 DbPath = [params(1).species '.abundantrnaDb.fas'];
 params(1).DbSize = getDbSize(DbPath);
 
@@ -66,7 +66,7 @@ for k = 1:length(blastData)
     data = [data blastData{k,1}];
 end
 
-%% Find out the oligos that non-specifically hit abundant rna database
+% Find out the oligos that non-specifically hit abundant rna database
 seqDelete = [];
 for n = 1:length(data)
     flag = 0;
@@ -89,7 +89,7 @@ Sequence(seqDelete)= [];
 nonSequence(seqDelete)= [];
 nonSequence2(seqDelete)= [];
 
-%% Optional check how many transcripts are left after this step of screening
+% Optional check how many transcripts are left after this step of screening
 if params(1).verbose
     [geneNumLeft,geneNumDelete] = checkTranscriptsLeft(adapterList,Header);
     disp([num2str(geneNumDelete) ' out of ' num2str(geneNumLeft+geneNumDelete), ' FISH escaped FISHerMan''s net']);
