@@ -22,7 +22,7 @@ if params(1).verbose
     % But here nothing happens? TK
    
     %% Split one giant fasta file into smaller ones, so that parallel computing is possible
-        disp('  spliting fasta files for parallel computing');
+    disp('  spliting fasta files for parallel computing');
 end
 
 
