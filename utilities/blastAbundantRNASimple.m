@@ -1,9 +1,8 @@
-% blast probes against abundant rna database. Only blast against the 
-% complementary sequences of abundant rna. Rule out the possibility of
+% Blast probes against abundant RNA database. Only blast against the 
+% complementary sequences of abundant RNA. Rule out the possibility of
 % homology of 15 nt or more.
 
-function [Header,Sequence,nonSequence]...
-    =blastAbundantRNASimple(Header,Sequence,nonSequence,params)
+function [Header,Sequence,nonSequence] = blastAbundantRNASimple (Header,Sequence,nonSequence,params)
 
 % params = struct('species','Mouse','verbose',1,...
 %     'number',48,'seqNum',1000,'thres',30,'querySize',30,...
@@ -15,7 +14,7 @@ if isempty(nonSequence)
 end
 
 if params(1).verbose
-    disp('removing non-specific oligos against the abundant rna database');
+    disp('Removing non-specific oligos against the abundant RNA database');
 end
 
 %% Split one giant fasta file into smaller ones, so that parallel computing is possible
@@ -26,7 +25,7 @@ end
 filePathList = blastFileSplit(Header, Sequence, params(1).seqNum);
 fileNum = length(filePathList);
 
-%% Blast mouse oligos against abundant rna
+%% Blast mouse oligos against abundant RNA
 DbPath = [params(1).species '.abundantrnaDb.fas'];
 params(1).DbSize = getDbSize(DbPath);
 
@@ -63,7 +62,7 @@ for k = 1:length(blastData)
     data = [data blastData{k,1}];
 end
 
-%% Find out the oligos that non-specifically hit abundant rna database
+%% Find out the oligos that non-specifically hit abundant RNA database
 seqDelete = [];
 for n = 1:length(data)
     flag = 0;
@@ -73,6 +72,7 @@ for n = 1:length(data)
     for m = 1:length(data(n).Hits)
         if isempty(strfind(data(n).Query,data(n).Hits(m).Name))
             flag = 1;
+            break;
         end
     end
     if flag == 1
