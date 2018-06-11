@@ -21,7 +21,7 @@ if params(1).verbose
     disp('Removing non-specific probes against the abundant RNA database');
     % But here nothing happens? TK
    
-    %% Split one giant fasta file into smaller ones, so that parallel computing is possible
+    % Split one giant fasta file into smaller ones, so that parallel computing is possible
     disp('  spliting fasta files for parallel computing');
 end
 
