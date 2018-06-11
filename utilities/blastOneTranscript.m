@@ -45,8 +45,7 @@ function seqDelete = blastOneTranscript(OTAdapterHeader,OTAdapterSequence,probeH
         delete([OTDb2 '*']);
     end
     fastawrite(OTDb2, Header, Sequence);
-    blastformat('Inputdb', OTDb2,...
-        'FormatArgs', '-o T -p F');
+    blastformat('Inputdb', OTDb2, 'FormatArgs', '-o T -p F');
 
     %% Blast probes against 2nd PCR primers and other probes
     DbPath1 = OTDb1;
