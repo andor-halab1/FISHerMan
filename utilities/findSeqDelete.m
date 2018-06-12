@@ -1,6 +1,5 @@
 function seqDelete=findSeqDelete(data)
-
-    %% Delete probes that non-specifically bind 2nd PCR primers
+    % Delete probes that non-specifically bind 2nd PCR primers
     seqDelete = [];
     for n = 1:length(data{2,1})
         if ~isempty(data{2,1}(n).Hits)
@@ -8,7 +7,7 @@ function seqDelete=findSeqDelete(data)
         end
     end
 
-    %% Delete probes that non-specifically bind other probes
+    % Delete probes that non-specifically bind other probes
     pairDelete = {};
     for n = 1:length(data{1,1})
         for m = 1:length(data{1,1}(n).Hits)
