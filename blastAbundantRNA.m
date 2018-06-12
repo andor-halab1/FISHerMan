@@ -90,7 +90,7 @@ nonSequence(seqDelete)= [];
 nonSequence2(seqDelete)= [];
 
 % Optional check how many transcripts are left after this step of screening
-if params(1).verbose
+if params(1).verbose && length(adapterList) ~= 0 % check the second condition TK
     [geneNumLeft,geneNumDelete] = checkTranscriptsLeft(adapterList,Header);
     disp([num2str(geneNumDelete) ' out of ' num2str(geneNumLeft+geneNumDelete), ' FISH escaped FISHerMan''s net']);
 end
