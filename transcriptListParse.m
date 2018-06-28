@@ -5,7 +5,7 @@ function [longHeader,longSequence,X]...
 %     'dir1','C:\FISHerMan\Db\Mouse.transcriptList.fas',...
 %     'length',40,'number',24);
 
-%% Pick transcript sequences that are longer than a certain threshold
+% Pick transcript sequences that are longer than a certain threshold
 if params(1).verbose
     disp('reading the name file of target transcripts');
     disp('  thresholding based on sequence length');
@@ -48,6 +48,7 @@ for n = 1:length(longHeader)
     GC=[GC;(G+C)/length(longSequence{n,1})*100];
 end
 
+handle = figure(1);
 hist(GC,0:5:100);
 title('histogram of GC contents');
 temp=axis;
@@ -57,6 +58,7 @@ axis(temp);
 
 disp('  click to select the boundaries for GC contents');
 [X,~]=ginput(2);
+close(handle);
 X=sort(X,'ascend');
 X=floor(X);
 
@@ -64,7 +66,7 @@ if params(1).verbose
     disp(['  GC content threshold is from ' num2str(X(1)) '% to ' num2str(X(2)) '%']);
 end
 
-%% Segment each transcript sequence into 1kb pieces, so later analysis runs more efficiently
+% Segment each transcript sequence into 1kb pieces, so later analysis runs more efficiently
 if params(1).verbose
     disp('  segmenting long sequences into 1kb segments');
 end
@@ -93,4 +95,3 @@ if exist(transcriptList, 'file')
     delete(transcriptList);
 end
 fastawrite(transcriptList, segHeader, segSequence);
-
