@@ -69,18 +69,14 @@ end
 % Find out the oligos that non-specifically hit abundant rna database
 seqDelete = [];
 for n = 1:length(data)
-    flag = 0;
     % data(n).Query is one-segment Header with '='
     % data(n).Hits(m).Name is one-segment Header
     % different transcripts from the same gene will cause flag == 1
     for m = 1:length(data(n).Hits)
         if isempty(strfind(data(n).Query,data(n).Hits(m).Name))
-            flag = 1;
+            seqDelete = [seqDelete;n];
             break
         end
-    end
-    if flag == 1
-        seqDelete = [seqDelete;n];
     end
 end
 
