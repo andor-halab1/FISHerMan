@@ -16,6 +16,11 @@ cd([FISHerManPath species]);
 addpath(FISHerManPath);
 addpath([FISHerManPath 'utilities']);
 
+% Disable non-existing file warnings on deletion operations
+msgid = 'delete: no such file: file';
+warning('off', msgid);
+
+
 parameters = input('input the directory where the parameter file can be found: ');
 params=readParameters(species,parameters);
 
